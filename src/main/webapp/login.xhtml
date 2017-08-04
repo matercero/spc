@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <f:loadBundle basename="messages" var="msg"/>
+    <h:head>        
+        <h:outputStylesheet name="css/loginStyle.css"/>
+        <title><h:outputText value="#{msg.tituloAplicacion}"/></title>
+    </h:head>
+    <h:body onload='document.f.j_username.focus();'>   
+        <!-- HEADER -->
+        <div id="header">
+            <div class="page-full-width cf">
+                <!-- login-intro -->
+                <div id="login-intro" class="fl">
+                    <h1>GESTIÓN DE INDICADORES</h1>
+                    <h4>Versi&oacute;n <h:outputText value="#{msg.versionAplicacion}"/></h4>
+                    <h4>Ingrese usuario y contrase&ntilde;a</h4>
+                </div> 
+                <!-- login-intro -->
+                <!-- The logo will automatically be resized to 39px height. -->
+                <div id="imgJunta">
+                    <h:outputLink  id="company-branding" styleClass="fr" 
+                                   value="http://www.juntadeandalucia.es/organismos/economiainnovacioncienciayempleo.html"
+                                   target="_blank" >
+                        <h:graphicImage value="#{resource['images/logojunta.png']}"
+                                        alt="Junta de Andaluc&iacute;a"
+                                        title="Junta de Andaluc&iacute;a"  />
+                    </h:outputLink>
+                </div>
+            </div> <!-- end full-width -->	
+        </div> <!-- end header -->
+        <div id="content">
+            <form action="j_spring_security_check" method="post" id="login-form">
+                <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+                <fieldset>
+                    <p>
+                        <label for="j_username">Usuario</label>
+                        <input type="text" id="j_username" name="j_username" 
+                               class="round full-width-input" autofocus="" />
+                    </p>
+                    <p>
+                        <label for="j_password">Contrase&ntilde;a</label>
+                        <input type="password" id="j_password" name="j_password" 
+                               class="round full-width-input" />
+                    </p>
+                    <a href="#" class="button round blue image-right ic-right-arrow"
+                       onclick="document.getElementById('login-form').submit();">LOG IN</a>
+                </fieldset>                
+                <br/>
+                <c:if test="${not empty sessionScope.SPRING_SECURITY_LAST_EXCEPTION}">
+                    <div class="error-box round">
+                        ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                    </div>
+                </c:if>                
+            </form>
+        </div>
+        <!-- FOOTER -->
+        <div id="footer">
+            <p>Instituto de Estad&iacute;stica y Cartograf&iacute;a de Andaluc&iacute;a </p>
+            <p>Sede Pabellón de Nueva Zelanda. C/ Leonardo Da Vinci, nº 21. Isla de La Cartuja. 41071-SEVILLA</p>
+            <p>Tlf.: 900 101 407 / 955 033 800 | Fax: 955 033 816</p>
+        </div> <!-- end footer -->
+    </h:body>
+</html>
