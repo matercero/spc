@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-08-2017 a las 11:00:42
+-- Tiempo de generación: 08-08-2017 a las 14:58:29
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `data_spc`
 --
-CREATE DATABASE IF NOT EXISTS `data_spc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `data_spc`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `data_spc`;
 -- Estructura de tabla para la tabla `categoria`
 --
 
-DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -44,7 +41,6 @@ CREATE TABLE `categoria` (
 -- Estructura de tabla para la tabla `categoria_componente`
 --
 
-DROP TABLE IF EXISTS `categoria_componente`;
 CREATE TABLE `categoria_componente` (
   `categoria_componente_id` bigint(20) NOT NULL,
   `componente_id` bigint(20) DEFAULT NULL
@@ -56,7 +52,6 @@ CREATE TABLE `categoria_componente` (
 -- Estructura de tabla para la tabla `categoria_proveedor`
 --
 
-DROP TABLE IF EXISTS `categoria_proveedor`;
 CREATE TABLE `categoria_proveedor` (
   `categoria_proveedor_id` bigint(20) NOT NULL,
   `proveedor_id` bigint(20) DEFAULT NULL
@@ -68,34 +63,36 @@ CREATE TABLE `categoria_proveedor` (
 -- Estructura de tabla para la tabla `cliente`
 --
 
-DROP TABLE IF EXISTS `cliente`;
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `apellidos` varchar(255) DEFAULT NULL,
   `codigo` varchar(255) DEFAULT NULL,
-  `codigo_postal` int(5) DEFAULT NULL,
+  `codigo_postal` int(5) NOT NULL DEFAULT '0',
   `date_created` datetime NOT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `dni` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
   `last_updated` datetime NOT NULL,
-  `movil` int(9) DEFAULT NULL,
+  `movil` int(9) NOT NULL DEFAULT '0',
   `municipio` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) NOT NULL,
   `observaciones` varchar(255) DEFAULT NULL,
   `provincia` varchar(255) DEFAULT NULL,
-  `telefono` int(9) DEFAULT NULL
+  `telefono` int(9) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `cliente` (`id`, `version`, `apellidos`, `codigo`, `codigo_postal`, `date_created`, `direccion`, `dni`, `email`, `enabled`, `last_updated`, `movil`, `municipio`, `nombre`, `observaciones`, `provincia`, `telefono`) VALUES
-(1, 0, NULL, '1701', NULL, '2017-08-03 08:33:47', NULL, NULL, NULL, b'0', '2017-08-03 08:33:47', NULL, NULL, 'ROCIO', NULL, NULL, NULL),
-(2, 0, NULL, NULL, NULL, '2017-08-03 08:37:02', NULL, NULL, NULL, b'0', '2017-08-03 08:37:02', NULL, NULL, 'ROCIO2', NULL, NULL, NULL);
+INSERT INTO `cliente` (`id`, `apellidos`, `codigo`, `codigo_postal`, `date_created`, `direccion`, `dni`, `email`, `enabled`, `last_updated`, `movil`, `municipio`, `nombre`, `observaciones`, `provincia`, `telefono`) VALUES
+(1, NULL, '1701', 0, '2017-08-03 08:33:47', NULL, NULL, NULL, b'0', '2017-08-03 08:33:47', 0, NULL, 'ROCIO', NULL, NULL, 0),
+(2, NULL, NULL, 0, '2017-08-03 08:37:02', NULL, NULL, NULL, b'0', '2017-08-03 08:37:02', 0, NULL, 'ROCIO2', NULL, NULL, 0),
+(3, '', NULL, 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'martin', '', '', 0),
+(4, '', NULL, 0, '2017-08-08 00:00:00', '', '', '', b'0', '2017-08-08 00:00:00', 0, '', 'maria', '', '', 0),
+(5, '', NULL, 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'marina', '', '', 0),
+(6, '', '176', 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'ROCIO', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -103,7 +100,6 @@ INSERT INTO `cliente` (`id`, `version`, `apellidos`, `codigo`, `codigo_postal`, 
 -- Estructura de tabla para la tabla `cliente_seguimiento`
 --
 
-DROP TABLE IF EXISTS `cliente_seguimiento`;
 CREATE TABLE `cliente_seguimiento` (
   `cliente_seguimientos_id` int(11) NOT NULL,
   `seguimiento_id` bigint(20) DEFAULT NULL
@@ -115,7 +111,6 @@ CREATE TABLE `cliente_seguimiento` (
 -- Estructura de tabla para la tabla `componente`
 --
 
-DROP TABLE IF EXISTS `componente`;
 CREATE TABLE `componente` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -132,7 +127,6 @@ CREATE TABLE `componente` (
 -- Estructura de tabla para la tabla `componente_proveedor`
 --
 
-DROP TABLE IF EXISTS `componente_proveedor`;
 CREATE TABLE `componente_proveedor` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -148,7 +142,6 @@ CREATE TABLE `componente_proveedor` (
 -- Estructura de tabla para la tabla `pago`
 --
 
-DROP TABLE IF EXISTS `pago`;
 CREATE TABLE `pago` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -164,7 +157,6 @@ CREATE TABLE `pago` (
 -- Estructura de tabla para la tabla `proveedor`
 --
 
-DROP TABLE IF EXISTS `proveedor`;
 CREATE TABLE `proveedor` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -190,7 +182,6 @@ CREATE TABLE `proveedor` (
 -- Estructura de tabla para la tabla `proveedor_componente`
 --
 
-DROP TABLE IF EXISTS `proveedor_componente`;
 CREATE TABLE `proveedor_componente` (
   `proveedor_componente_id` bigint(20) NOT NULL,
   `componente_id` bigint(20) DEFAULT NULL
@@ -202,7 +193,6 @@ CREATE TABLE `proveedor_componente` (
 -- Estructura de tabla para la tabla `role`
 --
 
-DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` bigint(20) NOT NULL,
   `authority` varchar(255) NOT NULL,
@@ -222,7 +212,6 @@ INSERT INTO `role` (`id`, `authority`, `rolname`) VALUES
 -- Estructura de tabla para la tabla `seguimiento`
 --
 
-DROP TABLE IF EXISTS `seguimiento`;
 CREATE TABLE `seguimiento` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -240,7 +229,6 @@ CREATE TABLE `seguimiento` (
 -- Estructura de tabla para la tabla `seguimiento_componente`
 --
 
-DROP TABLE IF EXISTS `seguimiento_componente`;
 CREATE TABLE `seguimiento_componente` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -261,7 +249,6 @@ CREATE TABLE `seguimiento_componente` (
 -- Estructura de tabla para la tabla `seguimiento_pago`
 --
 
-DROP TABLE IF EXISTS `seguimiento_pago`;
 CREATE TABLE `seguimiento_pago` (
   `id` bigint(20) NOT NULL,
   `version` bigint(20) NOT NULL,
@@ -280,7 +267,6 @@ CREATE TABLE `seguimiento_pago` (
 -- Estructura de tabla para la tabla `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
   `enabled` bit(1) NOT NULL,
@@ -302,7 +288,6 @@ INSERT INTO `user` (`id`, `enabled`, `password`, `username`) VALUES
 -- Estructura de tabla para la tabla `user_role`
 --
 
-DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
   `user_id` bigint(20) NOT NULL,
   `rol_id` bigint(20) NOT NULL
@@ -440,7 +425,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT de la tabla `componente`
 --

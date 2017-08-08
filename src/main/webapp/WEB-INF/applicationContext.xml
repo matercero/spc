@@ -62,6 +62,7 @@
             <list> 
                 <value>es.matercero.spc.hibernate.Role</value>                
                 <value>es.matercero.spc.hibernate.User</value>
+                <value>es.matercero.spc.hibernate.Cliente</value>
             </list>
         </property>
     </bean>

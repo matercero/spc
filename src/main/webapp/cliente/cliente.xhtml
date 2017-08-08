@@ -1,16 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+            <p:messages id="cli-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
+            <h:form  id="clienteForm" prependId="false" >
+                <div class="ui-fluid">
+
+                    <legend><h:outputText value="#{clienteBean.editTitle} : #{clienteBean.selectedCliente.nombre}"/></legend>
+                    <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                 layout="grid" styleClass="ui-panelgrid-blank">
+
+                        <p:outputLabel for="codigo" value="Código" rendered="#{clienteBean.selectedCliente.codigo!=null}"/>
+                        <h:outputText id="codigo" value="#{clienteBean.selectedCliente.codigo}" 
+                                      rendered="#{clienteBean.selectedCliente.codigo!=null} "/>
+
+                        <p:outputLabel for="dni" value="Dni"/>
+                        <p:inputText id="dni" value="#{clienteBean.selectedCliente.dni}"/>
+
+                        <p:outputLabel for="nombre" value="Nombre"/>
+                        <p:inputText id="nombre"  value="#{clienteBean.selectedCliente.nombre}" required="true"/>
+
+                        <p:outputLabel for="apellidos" value="Apellidos"/>
+                        <p:inputText id="apellidos"  value="#{clienteBean.selectedCliente.apellidos}" />
+
+                        <p:outputLabel for="direccion" value="Dirección"/>
+                        <p:inputText id="direccion"  value="#{clienteBean.selectedCliente.direccion}" />
+
+                        <p:outputLabel for="municipio" value="Municipio"/>
+                        <p:inputText id="municipio"  value="#{clienteBean.selectedCliente.municipio}" />
+
+                        <p:outputLabel for="codigoPostal" value="Código Postal"/>
+                        <p:inputText id="codigoPostal"  value="#{clienteBean.selectedCliente.codigoPostal}" />
+
+                        <p:outputLabel for="provincia" value="Provincia"/>
+                        <p:inputText id="provincia"  value="#{clienteBean.selectedCliente.provincia}" />
+
+                        <p:outputLabel for="movil" value="Móvil"/>
+                        <p:inputText id="movil"  value="#{clienteBean.selectedCliente.movil}" />
+
+                        <p:outputLabel for="telefono" value="Teléfono"/>
+                        <p:inputText id="telefono"  value="#{clienteBean.selectedCliente.telefono}" />
+
+                        <p:outputLabel for="email" value="Email"/>
+                        <p:inputText id="email"  value="#{clienteBean.selectedCliente.email}" />
+                        
+                        <h:outputLabel for="activo" value="¿Activo?" />
+                        <p:selectBooleanCheckbox id="enabled"  value="#{clienteBean.selectedCliente.enabled}" />      
+
+                        <p:outputLabel for="observacion" value="Observación"/>
+                        <p:inputTextarea id="observacion"  value="#{clienteBean.selectedCliente.observaciones}" />
+
+                    </p:panelGrid>
+
+                    <div class="form-group">
+                        <div class="col-lg-2 ">
+                            <p:commandButton
+                                value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                                immediate="true" style="margin: 20px;"
+                                action="clientes?faces-redirect=true"/>
+                            <p:commandButton
+                                value="Guardar" icon="ui-icon-disk"
+                                actionListener="#{clienteBean.createOrUpdateCliente}"/>
+                        </div>
+                    </div>
+
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>
