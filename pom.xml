@@ -8,7 +8,7 @@
     <name>SpcApp</name>
     <url>http://maven.apache.org</url>
  
-     <properties>
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.2.5.RELEASE</spring.version>
         <springsecurty.version>3.1.4.RELEASE</springsecurty.version>    
@@ -196,12 +196,11 @@
         
         <!-- Themes PrimeFaces -->
         <!-- Cambiar tambien en web.xml-->
-        
+  
         <dependency>
-            <groupId>net.bootsfaces</groupId>
-            <artifactId>bootsfaces</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>smoothness</artifactId>
+            <version>1.0.10</version>
         </dependency>
                  
         <!--  For object/json conversion-->

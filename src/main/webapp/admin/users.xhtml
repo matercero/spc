@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+            <p:messages id="user-messages" showDetail="true" showSummary="false" autoUpdate="true" closable="true"/>   
+            <h:form id="userForm" prependId="false">
+                <h2 style="text-align: center">Usuarios</h2>
+               
+                <p:dataTable var="v_user" value="#{userBean.users}" rows="10">
+                    <p:column headerText="Usuario">
+                        <h:outputText value="#{v_user.username}" />
+                    </p:column>
+
+                    <p:column headerText="Roles">
+                        <h:outputText value="#{v_user.stringRoles}" />
+                    </p:column>
+                    
+                     <p:column headerText="¿Activo?">
+                        <h:outputText value="Sí" rendered="#{v_user.enabled}"/>
+                        <h:outputText value="No" rendered="#{!v_user.enabled}"/>
+                    </p:column>   
+
+                    <p:column headerText="Acciones">
+                        <p:commandButton action="user?faces-redirect=true" icon="ui-icon-pencil" title="Editar">
+                            <f:setPropertyActionListener value="#{v_user}" 
+                                                         target="#{userBean.selectedUser}" />
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+
+
+                <h:panelGroup style="display: block; text-align: center; margin-top: 15px">
+                    <p:commandButton value="Nuevo usuario" 
+                                     actionListener="#{userBean.newUser}"
+                                     action="user?faces-redirect=true"/>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

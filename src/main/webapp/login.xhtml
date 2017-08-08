@@ -10,25 +10,23 @@
         <h:outputStylesheet name="css/loginStyle.css"/>
         <title><h:outputText value="#{msg.tituloAplicacion}"/></title>
     </h:head>
-    <h:body onload='document.f.j_username.focus();'>   
+    <h:body onload='document.username.focus();'>   
         <!-- HEADER -->
         <div id="header">
             <div class="page-full-width cf">
                 <!-- login-intro -->
                 <div id="login-intro" class="fl">
-                    <h1>GESTIÓN DE INDICADORES</h1>
+                    <h1>GESTIÓN DE SEGUIMIENTO PEDIDOS</h1>
                     <h4>Versi&oacute;n <h:outputText value="#{msg.versionAplicacion}"/></h4>
-                    <h4>Ingrese usuario y contrase&ntilde;a</h4>
                 </div> 
                 <!-- login-intro -->
-                <!-- The logo will automatically be resized to 39px height. -->
-                <div id="imgJunta">
+                  <div id="imgJunta">
                     <h:outputLink  id="company-branding" styleClass="fr" 
-                                   value="http://www.juntadeandalucia.es/organismos/economiainnovacioncienciayempleo.html"
+                                   value="http://www.moroncocinas.com"
                                    target="_blank" >
-                        <h:graphicImage value="#{resource['images/logojunta.png']}"
-                                        alt="Junta de Andaluc&iacute;a"
-                                        title="Junta de Andaluc&iacute;a"  />
+                        <h:graphicImage value="#{resource['images/mc/logo.png']}"
+                                        alt="Morón Cocinas, SL"
+                                        title="Morón Cocinas, creando espacios..."  />
                     </h:outputLink>
                 </div>
             </div> <!-- end full-width -->	
@@ -48,7 +46,7 @@
                                class="round full-width-input" />
                     </p>
                     <a href="#" class="button round blue image-right ic-right-arrow"
-                       onclick="document.getElementById('login-form').submit();">LOG IN</a>
+                       onclick="document.getElementById('login-form').submit();">ENTRAR</a>
                 </fieldset>                
                 <br/>
                 <c:if test="${not empty sessionScope.SPRING_SECURITY_LAST_EXCEPTION}">
@@ -60,9 +58,9 @@
         </div>
         <!-- FOOTER -->
         <div id="footer">
-            <p>Instituto de Estad&iacute;stica y Cartograf&iacute;a de Andaluc&iacute;a </p>
-            <p>Sede Pabellón de Nueva Zelanda. C/ Leonardo Da Vinci, nº 21. Isla de La Cartuja. 41071-SEVILLA</p>
-            <p>Tlf.: 900 101 407 / 955 033 800 | Fax: 955 033 816</p>
+            <p>Morón Cocinas, SL </p>
+            <p>C/ Rio Pisuerga, 2. 41530-Morón de la Frontera. Sevilla</p>
+            <p>Tlf.: 615 25 11 64 | 955 85 33 32 | Fax: </p>
         </div> <!-- end footer -->
     </h:body>
 </html>

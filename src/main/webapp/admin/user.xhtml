@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+            <p:messages id="user-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
+            <h:form  id="usersForm" prependId="false" >
+                <fieldset>
+                    <legend><h:outputText value="#{userBean.editUserTitle} : #{userBean.selectedUser.username}"/></legend>
+                    <h:panelGrid columns="2" cellpadding="15"  cellspacing="10" style="width: 50%">
+
+                        <h:outputText value="Nombre usuario" rendered="#{userBean.selectedUser.id == null}"/>                       
+                        <p:inputText id="username" 
+                                     rendered="#{userBean.selectedUser.id == null}"
+                                     value="#{userBean.selectedUser.username}"
+                                     required="true"
+                                     label="Usuario">
+                        </p:inputText>
+
+                        <h:outputLabel for="activo" value="¿Activo?" />
+                        <p:selectBooleanCheckbox id="enabled"  value="#{userBean.selectedUser.enabled}" 
+                                                 />      
+                        <h:outputLabel for="editPassowrd" value="¿Editar password?:" />
+                        <p:selectBooleanCheckbox id="editPassowrd" value="#{userBean.editPassword}"
+                                                 disabled="#{userBean.selectedUser.id == null}" >
+                            <p:ajax update="pwd1 pwd2"/>
+                        </p:selectBooleanCheckbox>
+
+                        <h:outputText value="Contraseña 1" />
+                        <p:password disabled="#{!userBean.editPassword}"
+                                       id="pwd1"
+                                       value="#{userBean.selectedUser.password}"
+                                       label="Contraseña 1"
+                                       required="true">
+                        </p:password>
+
+                        <h:outputText  value="Repita contraseña" />
+                        <p:password disabled="#{!userBean.editPassword}"
+                                       id="pwd2"
+                                       value="#{userBean.selectedUser.password}"
+                                       label="Contraseña 2"
+                                       required="true">
+                        </p:password>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                        <p:row>
+                            <p:column rowspan="6"  style="background-color: white;">
+                                <p:pickList id="pickList"
+                                            value="#{userBean.selectedUserRoles}"
+                                            var="role"
+                                            itemLabel="#{role.rolname}"
+                                            itemValue="#{role}"
+                                            converter="roleConverter">
+                                    <f:facet name="sourceCaption">Disponibles</f:facet>
+                                    <f:facet name="targetCaption">Seleccionado/s</f:facet>
+                                </p:pickList>
+                            </p:column>
+                        </p:row>
+                    </h:panelGrid>
+
+
+                    <div class="form-group">
+                        <div class="col-lg-12 col-lg-offset-5">
+                            <p:commandButton
+                                value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                                immediate="true" style="margin: 20px;"
+                                action="users?faces-redirect=true"/>
+                            <p:commandButton
+                                value="Guardar" icon="ui-icon-disk"
+                                actionListener="#{userBean.updateSelectedUser}"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

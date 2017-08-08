@@ -13,14 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import org.hibernate.annotations.Parameter;
 
 /**     
  *
  * @author mtercero
  */
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User implements Serializable {
 
     /**
@@ -29,6 +28,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "username", unique = true, nullable = false, length = 10)
     private String username;
@@ -37,7 +37,7 @@ public class User implements Serializable {
     @Column(name = "enabled")
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_roles",
+    @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "rol_id")})
     private List<Role> roles;
