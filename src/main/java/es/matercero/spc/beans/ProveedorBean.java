@@ -90,7 +90,6 @@ public class ProveedorBean implements Serializable {
      */
     public void newProveedor(ActionEvent actionEvent) {
         selectedProveedor = new Proveedor();
-
     }
 
     /**

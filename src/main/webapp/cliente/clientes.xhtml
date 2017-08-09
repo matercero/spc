@@ -43,16 +43,20 @@
                             <f:setPropertyActionListener value="#{v_cli}" 
                                                          target="#{clienteBean.selectedCliente}" />
                         </p:commandButton>
-                        
+
                         <p:commandButton action="cliente?faces-redirect=true"
                                          icon="ui-icon-trash" title="Eliminar">
                             <f:setPropertyActionListener value="#{v_cli}" 
                                                          target="#{clienteBean.selectedCliente}" />
                         </p:commandButton>
-                        
+
+                        <p:commandButton title="Crear seguimiento" icon="ui-icon-cart"
+                                         actionListener="#{seguimientoBean.newSeguimiento}"
+                                         action="/mantenimiento/seguimiento?faces-redirect=true"/>
+
                     </p:column>
                 </p:dataTable>
-                
+
                 <h:panelGroup style="display: block; text-align: center; margin-top: 15px">
                     <p:commandButton value="Nuevo cliente"  icon="ui-icon-plusthick"
                                      actionListener="#{clienteBean.newCliente}"

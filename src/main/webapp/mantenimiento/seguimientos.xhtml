@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+            <p:messages id="seg-messages" showDetail="true" showSummary="false" autoUpdate="true" closable="true"/>   
+            <h:form id="seguimientoForm" prependId="false">
+                <h2 style="text-align: center">Seguimientos</h2>
+                <p:dataTable var="v_seg" value="#{seguimientoBean.seguimientos}"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="15,20"
+                             style="width:100%;"  paginatorPosition="bottom">
+
+                    <p:column headerText="Nombre" sortBy="#{v_seg.modelo}">
+                        <h:outputText value="#{v_seg.modelo}" />
+                    </p:column>    
+
+                </p:dataTable>
+
+                <h:panelGroup style="display: block; text-align: center; margin-top: 15px">
+                    <p:commandButton value="Nuevo seguimiento"  icon="ui-icon-plusthick"
+                                     actionListener="#{seguimientoBean.newSeguimiento}"
+                                     action="seguimiento?faces-redirect=true"/>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

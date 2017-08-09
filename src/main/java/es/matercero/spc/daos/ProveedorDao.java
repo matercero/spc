@@ -45,7 +45,7 @@ public class ProveedorDao extends CustomHibernateDaoSupport implements
     @Override
     public List<Proveedor> find(DetachedCriteria criteria) {
         if (criteria == null) {
-            return getSession().createQuery("FROM " + TABLE_NAME + " ORDER BY id")
+            return getSession().createQuery("FROM " + TABLE_NAME )
                     .list();
         } else {
             return criteria.getExecutableCriteria(getSession()).list();

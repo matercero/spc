@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+             <p:messages id="seg-messages" showDetail="true" showSummary="false" autoUpdate="true" closable="true"/>   
+            <h:form id="seguimientoForm" prependId="false">
+                <div class="ui-fluid">
+
+                    <legend><h:outputText value="#{seguimientoBean.editTitle} : #{seguimientoBean.selectedSeguimiento.toString()} " /></legend>
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                 layout="grid" styleClass="ui-panelgrid-blank">
+
+                        <p:outputLabel for="modelo" value="Modelo"/>
+                        <p:inputText id="modelo"  value="#{seguimientoBean.selectedSeguimiento.modelo}"
+                                     required="true"/>
+
+                        <h:outputLabel for="activo" value="¿Activo?" />
+                        <p:selectBooleanCheckbox id="enabled"  value="#{seguimientoBean.selectedSeguimiento.enabled}" />      
+
+                    </p:panelGrid>
+
+                    <p:commandButton
+                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                        immediate="true" style="margin-bottom: 10px; width: 15%;"
+                        action="seguimientos?faces-redirect=true"/>
+                    <p:commandButton
+                        value="Guardar" icon="ui-icon-disk"
+                        actionListener="#{seguimientoBean.createOrUpdateSeguimiento}"/>
+
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

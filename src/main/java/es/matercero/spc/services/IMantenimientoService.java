@@ -8,6 +8,7 @@ package es.matercero.spc.services;
 import es.matercero.spc.hibernate.Categoria;
 import es.matercero.spc.hibernate.Componente;
 import es.matercero.spc.hibernate.Pago;
+import es.matercero.spc.hibernate.Seguimiento;
 import java.util.List;
 
 /**
@@ -43,4 +44,15 @@ public interface IMantenimientoService {
     void createPago(Pago entity);
     
     void updatePago(Pago entity);
+    
+    /**
+     * seguimiento
+     *
+     * @param entity seguimiento
+     */
+    List<Seguimiento> queryAllSeguimientos();
+    
+    void createSeguimiento(Seguimiento entity);
+    
+    void updateSeguimiento(Seguimiento entity);
 }

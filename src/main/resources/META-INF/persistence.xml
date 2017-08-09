@@ -5,6 +5,7 @@
     <class>es.matercero.spc.hibernate.Categoria</class>
     <class>es.matercero.spc.hibernate.Componente</class>
     <class>es.matercero.spc.hibernate.Pago</class>
+    <class>es.matercero.spc.hibernate.Seguimiento</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/data_spc?zeroDateTimeBehavior=convertToNull"/>

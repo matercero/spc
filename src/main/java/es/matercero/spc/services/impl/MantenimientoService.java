@@ -9,6 +9,7 @@ import es.matercero.spc.daos.IDao;
 import es.matercero.spc.hibernate.Categoria;
 import es.matercero.spc.hibernate.Componente;
 import es.matercero.spc.hibernate.Pago;
+import es.matercero.spc.hibernate.Seguimiento;
 import es.matercero.spc.services.IMantenimientoService;
 import java.io.Serializable;
 import java.util.List;
@@ -37,6 +38,8 @@ public class MantenimientoService implements IMantenimientoService, Serializable
     private IDao<Categoria> categoriaDao;
     @Autowired
     private IDao<Pago> pagoDao;
+    @Autowired
+    private IDao<Seguimiento> seguimientoDao;
 
     @Override
     public void createCategoria(Categoria entity) {
@@ -132,6 +135,38 @@ public class MantenimientoService implements IMantenimientoService, Serializable
      */
     public void setPagoDao(IDao<Pago> pagoDao) {
         this.pagoDao = pagoDao;
+    }
+
+    @Override
+    public List<Seguimiento> queryAllSeguimientos() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Seguimiento.class, "Seguimiento");
+        dc.addOrder(Order.asc("last_updated"));
+        dc.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return getSeguimientoDao().find(dc);
+    }
+
+    @Override
+    public void createSeguimiento(Seguimiento entity) {
+        getSeguimientoDao().save(entity);
+    }
+
+    @Override
+    public void updateSeguimiento(Seguimiento entity) {
+        getSeguimientoDao().update(entity);
+    }
+
+    /**
+     * @return the seguimientoDao
+     */
+    public IDao<Seguimiento> getSeguimientoDao() {
+        return seguimientoDao;
+    }
+
+    /**
+     * @param seguimientoDao the seguimientoDao to set
+     */
+    public void setSeguimientoDao(IDao<Seguimiento> seguimientoDao) {
+        this.seguimientoDao = seguimientoDao;
     }
 
 }
