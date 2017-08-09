@@ -35,6 +35,13 @@
                     <p:menuitem value="Salir" url="/spcapp/j_spring_security_logout"
                                 icon="ui-icon-power" style="margin-left: 100px" />
                 </p:menubar>
+                
+                 <div style="display:inline-block;  position:absolute; top: 1em; right:1em;">    
+                           
+                            <h:outputText value=" | Conectado: #{userBean.loginUser.username}" 
+                                          style="color: #DDDDDD; font-weight: bold" 
+                                          title="Versión #{msg.versionAplicacion}"/>
+                        </div>
 
             </h:form>
 

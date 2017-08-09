@@ -2,15 +2,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"      
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="WEB-INF/template/layout.xhtml">
         <ui:define name="content">
-          
-                <h3>Gestión de indicadores.</h3>
-                Solución software para la gestión de indicadores.<br />
-                Depto. de Planificación.
-          
+
+            <h3>Gestión de seguimientos cocinas.</h3>
+
+            <p:contentFlow value="#{imagesView.images}" var="image">
+                <p:graphicImage name="images/mc/galeria/#{image}" styleClass="content" />
+                
+                <div class="caption">#{image}</div>
+            </p:contentFlow>
         </ui:define>
     </ui:composition>
 </html>
