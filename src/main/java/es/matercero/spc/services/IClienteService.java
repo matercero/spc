@@ -16,7 +16,7 @@ public interface IClienteService {
 
 
     /**
-     * Devuelve la lista de todos los usuarios ordenados por nombre de usuario
+     * Devuelve la lista de todos los Clientes
      *
      * @return lista de objetos Clientes
      */

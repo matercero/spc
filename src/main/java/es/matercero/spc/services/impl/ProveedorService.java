@@ -7,7 +7,8 @@ package es.matercero.spc.services.impl;
 
 import es.matercero.spc.daos.IDao;
 import es.matercero.spc.hibernate.Cliente;
-import es.matercero.spc.services.IClienteService;
+import es.matercero.spc.hibernate.Proveedor;
+import es.matercero.spc.services.IProveedorService;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Criteria;
@@ -21,50 +22,51 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author mangel.tercero
  */
-@Service("clienteService")
+@Service("proveedorService")
 @Transactional
-public class ClienteService implements IClienteService, Serializable {
-
-    /**
+public class ProveedorService implements IProveedorService, Serializable {
+    
+    
+      /**
      * * serialVersionUID
      */
     private static final long serialVersionUID = 1L;
     @Autowired
-    private IDao<Cliente> clienteDao;
+    private IDao<Proveedor> proveedorDao;
 
-    public ClienteService() {
+    public ProveedorService() {
     }
-
-    /**
-     * @return the clienteDao
-     */
-    public IDao<Cliente> getClienteDao() {
-        return clienteDao;
-    }
-
-    /**
-     * @param clienteDao the clienteDao to set
-     */
-    public void setClienteDao(IDao<Cliente> clienteDao) {
-        this.clienteDao = clienteDao;
-    }
-
+    
     @Override
-    public List<Cliente> queryAllClientes() {
-        DetachedCriteria dc = DetachedCriteria.forClass(Cliente.class, "cliente");
+    public List<Proveedor> queryAllProveedores() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Proveedor.class, "proveedor");
         dc.addOrder(Order.asc("nombre"));
         dc.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        return getClienteDao().find(dc);
+        return getProveedorDao().find(dc);
     }
 
     @Override
-    public void createCliente(Cliente entity) {
-      getClienteDao().save(entity);
+    public void createProveedor(Proveedor entity) {
+        getProveedorDao().save(entity);
     }
 
     @Override
-    public void updateCliente(Cliente entity) {
-        getClienteDao().update(entity);
+    public void updateProveedor(Proveedor entity) {
+        getProveedorDao().update(entity);
+    }
+
+    /**
+     * @return the proveedorDao
+     */
+    public IDao<Proveedor> getProveedorDao() {
+        return proveedorDao;
+    }
+
+    /**
+     * @param proveedorDao the proveedorDao to set
+     */
+    public void setProveedorDao(IDao<Proveedor> proveedorDao) {
+        this.proveedorDao = proveedorDao;
     }
     
 }

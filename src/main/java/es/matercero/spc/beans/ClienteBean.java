@@ -7,15 +7,12 @@ package es.matercero.spc.beans;
 
 import es.matercero.spc.hibernate.Cliente;
 import es.matercero.spc.services.IClienteService;
-import es.matercero.spc.services.IUserService;
 import es.matercero.spc.utils.Utilidades;
 import java.util.List;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,21 +105,28 @@ public class ClienteBean implements Serializable {
             selectedCliente.setEnabled(true);
 
             clienteService.createCliente(selectedCliente);
-
+            // el codigo del cliente se forma con 
+            // Anyo actual 'yy + id'
             SimpleDateFormat sf = new SimpleDateFormat("yy");
-            String codigo = sf.format(Calendar.getInstance().getTime()) + selectedCliente.getId();
+            String id =  String.format("%02d", (Integer) selectedCliente.getId());
+            String codigo = sf.format(Calendar.getInstance().getTime()) + id ;
             selectedCliente.setCodigo(codigo);
             clienteService.updateCliente(selectedCliente);
-
-            Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Cliente actualizada",
+            reiniciarListaClientes();
+            Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Cliente creado",
                     "El Cliente se ha creado correctamente.");
         } else {
             selectedCliente.setLastUpdated(Calendar.getInstance().getTime());
             clienteService.updateCliente(selectedCliente);
-            Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Cliente actualizada",
+            reiniciarListaClientes();
+            Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Cliente actualizado",
                     "El Cliente se ha actualizado correctamente.");
         }
         return "cliente?faces-redirect=true";
+    }
+
+    private void reiniciarListaClientes() {
+        clientes = getClienteService().queryAllClientes();
     }
 
     /**

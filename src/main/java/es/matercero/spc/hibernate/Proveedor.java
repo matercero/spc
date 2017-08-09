@@ -20,8 +20,8 @@ import javax.persistence.Temporal;
  * @author mangel.tercero
  */
 @Entity
-@Table(name = "cliente")
-public class Cliente implements Serializable {
+@Table(name = "proveedor")
+public class Proveedor implements Serializable {
 
     /**
      * * serialVersionUID
@@ -31,14 +31,12 @@ public class Cliente implements Serializable {
     @Column(name = "id", unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "dni")
-    private String dni;
-    @Column(name = "codigo")
-    private String codigo;
+    @Column(name = "cif")
+    private String cif;
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "apellidos")
-    private String apellidos;
+    @Column(name = "persona_contacto")
+    private String personaContacto;
     @Column(name = "direccion")
     private String direccion;
     @Column(name = "email")
@@ -79,6 +77,20 @@ public class Cliente implements Serializable {
     }
 
     /**
+     * @return the cif
+     */
+    public String getCif() {
+        return cif;
+    }
+
+    /**
+     * @param cif the cif to set
+     */
+    public void setCif(String cif) {
+        this.cif = cif;
+    }
+
+    /**
      * @return the nombre
      */
     public String getNombre() {
@@ -93,45 +105,17 @@ public class Cliente implements Serializable {
     }
 
     /**
-     * @return the dni
+     * @return the personaContacto
      */
-    public String getDni() {
-        return dni;
+    public String getPersonaContacto() {
+        return personaContacto;
     }
 
     /**
-     * @param dni the dni to set
+     * @param personaContacto the personaContacto to set
      */
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    /**
-     * @return the codigo
-     */
-    public String getCodigo() {
-        return codigo;
-    }
-
-    /**
-     * @param codigo the codigo to set
-     */
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    /**
-     * @return the apellidos
-     */
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    /**
-     * @param apellidos the apellidos to set
-     */
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setPersonaContacto(String personaContacto) {
+        this.personaContacto = personaContacto;
     }
 
     /**
@@ -218,7 +202,19 @@ public class Cliente implements Serializable {
         this.provincia = provincia;
     }
 
-   
+    /**
+     * @return the enabled
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * @param enabled the enabled to set
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
     /**
      * @return the codigoPostal
@@ -274,20 +270,6 @@ public class Cliente implements Serializable {
      */
     public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
-    }
-
-    /**
-     * @return the enabled
-     */
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    /**
-     * @param enabled the enabled to set
-     */
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
 }

@@ -13,14 +13,14 @@
             <h:form  id="clienteForm" prependId="false" >
                 <div class="ui-fluid">
 
-                    <legend><h:outputText value="#{clienteBean.editTitle} : #{clienteBean.selectedCliente.nombre}"/></legend>
-                    <p:panelGrid columns="4" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                    <legend><h:outputText value="#{clienteBean.editTitle} : #{clienteBean.selectedCliente.nombre} #{clienteBean.selectedCliente.apellidos}"/>
+                            <h:outputText value=" | Codigo:  #{clienteBean.selectedCliente.codigo}"
+                                          rendered="#{clienteBean.selectedCliente.codigo!=null}" />
+                    </legend>
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
                                  layout="grid" styleClass="ui-panelgrid-blank">
 
-                        <p:outputLabel for="codigo" value="Código" rendered="#{clienteBean.selectedCliente.codigo!=null}"/>
-                        <h:outputText id="codigo" value="#{clienteBean.selectedCliente.codigo}" 
-                                      rendered="#{clienteBean.selectedCliente.codigo!=null} "/>
-
+                        
                         <p:outputLabel for="dni" value="Dni"/>
                         <p:inputText id="dni" value="#{clienteBean.selectedCliente.dni}"/>
 

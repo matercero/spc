@@ -1,16 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+            <p:messages id="cli-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
+            <h:form  id="proveedorForm" prependId="false" >
+                <div class="ui-fluid">
+
+                    <legend><h:outputText value="#{proveedorBean.editTitle} : #{proveedorBean.selectedProveedor.nombre} #{proveedorBean.selectedProveedor.personaContacto}"/>
+                          
+                    </legend>
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                 layout="grid" styleClass="ui-panelgrid-blank">
+
+                        
+                        <p:outputLabel for="cif" value="CIF"/>
+                        <p:inputText id="cif" value="#{proveedorBean.selectedProveedor.cif}"/>
+
+                        <p:outputLabel for="nombre" value="Nombre"/>
+                        <p:inputText id="nombre"  value="#{proveedorBean.selectedProveedor.nombre}" required="true"/>
+
+                    
+                        <p:outputLabel for="direccion" value="Dirección"/>
+                        <p:inputText id="direccion"  value="#{proveedorBean.selectedProveedor.direccion}" />
+
+                        <p:outputLabel for="municipio" value="Municipio"/>
+                        <p:inputText id="municipio"  value="#{proveedorBean.selectedProveedor.municipio}" />
+
+                        <p:outputLabel for="codigoPostal" value="Código Postal"/>
+                        <p:inputText id="codigoPostal"  value="#{proveedorBean.selectedProveedor.codigoPostal}" />
+
+                        <p:outputLabel for="provincia" value="Provincia"/>
+                        <p:inputText id="provincia"  value="#{proveedorBean.selectedProveedor.provincia}" />
+
+                        <p:outputLabel for="movil" value="Móvil"/>
+                        <p:inputText id="movil"  value="#{proveedorBean.selectedProveedor.movil}" />
+
+                        <p:outputLabel for="telefono" value="Teléfono"/>
+                        <p:inputText id="telefono"  value="#{proveedorBean.selectedProveedor.telefono}" />
+
+                        <p:outputLabel for="email" value="Email"/>
+                        <p:inputText id="email"  value="#{proveedorBean.selectedProveedor.email}" />
+                        
+                        <h:outputLabel for="activo" value="¿Activo?" />
+                        <p:selectBooleanCheckbox id="enabled"  value="#{proveedorBean.selectedProveedor.enabled}" />      
+
+                        <p:outputLabel for="observacion" value="Observación"/>
+                        <p:inputTextarea id="observacion"  value="#{proveedorBean.selectedProveedor.observaciones}" />
+
+                    </p:panelGrid>
+
+                    <div class="form-group">
+                        <div class="col-lg-2 ">
+                            <p:commandButton
+                                value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                                immediate="true" style="margin: 20px;"
+                                action="proveedores?faces-redirect=true"/>
+                            <p:commandButton
+                                value="Guardar" icon="ui-icon-disk"
+                                actionListener="#{proveedorBean.createOrUpdateProveedor}"/>
+                        </div>
+                    </div>
+
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>
