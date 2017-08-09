@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-08-2017 a las 10:45:40
+-- Tiempo de generación: 09-08-2017 a las 14:51:02
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -33,6 +33,13 @@ CREATE TABLE `categoria` (
   `last_updated` datetime NOT NULL,
   `nombre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id`, `date_created`, `enabled`, `last_updated`, `nombre`) VALUES
+(1, '2017-08-09 12:44:44', b'1', '2017-08-09 12:44:44', 'categoria1');
 
 -- --------------------------------------------------------
 
@@ -124,6 +131,13 @@ CREATE TABLE `componente` (
   `nombre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `componente`
+--
+
+INSERT INTO `componente` (`id`, `coste`, `date_created`, `enabled`, `last_updated`, `nombre`) VALUES
+(1, 12, '2017-08-09 12:50:31', b'1', '2017-08-09 12:50:31', 'componente1');
+
 -- --------------------------------------------------------
 
 --
@@ -152,6 +166,14 @@ CREATE TABLE `pago` (
   `last_updated` datetime NOT NULL,
   `pago` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pago`
+--
+
+INSERT INTO `pago` (`id`, `date_created`, `enabled`, `last_updated`, `pago`) VALUES
+(1, '2017-08-09 12:45:33', b'1', '2017-08-09 12:45:33', 'Efectivo'),
+(2, '2017-08-09 12:45:59', b'1', '2017-08-09 12:45:59', 'Cheque');
 
 -- --------------------------------------------------------
 
@@ -428,7 +450,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT de la tabla `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `cliente`
 --
@@ -438,7 +460,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `componente`
 --
 ALTER TABLE `componente`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT de la tabla `componente_proveedor`
 --
@@ -448,7 +470,7 @@ ALTER TABLE `componente_proveedor`
 -- AUTO_INCREMENT de la tabla `pago`
 --
 ALTER TABLE `pago`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
