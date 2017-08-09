@@ -64,6 +64,9 @@
                 <value>es.matercero.spc.hibernate.User</value>
                 <value>es.matercero.spc.hibernate.Cliente</value>
                 <value>es.matercero.spc.hibernate.Proveedor</value>
+                <value>es.matercero.spc.hibernate.Componente</value>
+                <value>es.matercero.spc.hibernate.Pago</value>
+                <value>es.matercero.spc.hibernate.Categoria</value>
             </list>
         </property>
     </bean>

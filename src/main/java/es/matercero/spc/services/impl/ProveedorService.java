@@ -6,7 +6,6 @@
 package es.matercero.spc.services.impl;
 
 import es.matercero.spc.daos.IDao;
-import es.matercero.spc.hibernate.Cliente;
 import es.matercero.spc.hibernate.Proveedor;
 import es.matercero.spc.services.IProveedorService;
 import java.io.Serializable;

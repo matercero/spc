@@ -14,13 +14,13 @@
                 <div class="ui-fluid">
 
                     <legend><h:outputText value="#{clienteBean.editTitle} : #{clienteBean.selectedCliente.nombre} #{clienteBean.selectedCliente.apellidos}"/>
-                            <h:outputText value=" | Codigo:  #{clienteBean.selectedCliente.codigo}"
-                                          rendered="#{clienteBean.selectedCliente.codigo!=null}" />
+                        <h:outputText value=" | Codigo:  #{clienteBean.selectedCliente.codigo}"
+                                      rendered="#{clienteBean.selectedCliente.codigo!=null}" />
                     </legend>
                     <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
                                  layout="grid" styleClass="ui-panelgrid-blank">
 
-                        
+
                         <p:outputLabel for="dni" value="Dni"/>
                         <p:inputText id="dni" value="#{clienteBean.selectedCliente.dni}"/>
 
@@ -50,7 +50,7 @@
 
                         <p:outputLabel for="email" value="Email"/>
                         <p:inputText id="email"  value="#{clienteBean.selectedCliente.email}" />
-                        
+
                         <h:outputLabel for="activo" value="¿Activo?" />
                         <p:selectBooleanCheckbox id="enabled"  value="#{clienteBean.selectedCliente.enabled}" />      
 
@@ -59,17 +59,15 @@
 
                     </p:panelGrid>
 
-                    <div class="form-group">
-                        <div class="col-lg-2 ">
-                            <p:commandButton
-                                value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                                immediate="true" style="margin: 20px;"
-                                action="clientes?faces-redirect=true"/>
-                            <p:commandButton
-                                value="Guardar" icon="ui-icon-disk"
-                                actionListener="#{clienteBean.createOrUpdateCliente}"/>
-                        </div>
-                    </div>
+
+                    <p:commandButton
+                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                        immediate="true" style="margin-bottom: 10px; width: 15%;"
+                        action="clientes?faces-redirect=true"/>
+                    <p:commandButton
+                        value="Guardar" icon="ui-icon-disk"
+                        actionListener="#{clienteBean.createOrUpdateCliente}"/>
+
 
                 </div>
             </h:form>

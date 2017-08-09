@@ -14,19 +14,19 @@
                 <div class="ui-fluid">
 
                     <legend><h:outputText value="#{proveedorBean.editTitle} : #{proveedorBean.selectedProveedor.nombre} #{proveedorBean.selectedProveedor.personaContacto}"/>
-                          
+
                     </legend>
                     <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
                                  layout="grid" styleClass="ui-panelgrid-blank">
 
-                        
+
                         <p:outputLabel for="cif" value="CIF"/>
                         <p:inputText id="cif" value="#{proveedorBean.selectedProveedor.cif}"/>
 
                         <p:outputLabel for="nombre" value="Nombre"/>
                         <p:inputText id="nombre"  value="#{proveedorBean.selectedProveedor.nombre}" required="true"/>
 
-                    
+
                         <p:outputLabel for="direccion" value="Dirección"/>
                         <p:inputText id="direccion"  value="#{proveedorBean.selectedProveedor.direccion}" />
 
@@ -47,7 +47,7 @@
 
                         <p:outputLabel for="email" value="Email"/>
                         <p:inputText id="email"  value="#{proveedorBean.selectedProveedor.email}" />
-                        
+
                         <h:outputLabel for="activo" value="¿Activo?" />
                         <p:selectBooleanCheckbox id="enabled"  value="#{proveedorBean.selectedProveedor.enabled}" />      
 
@@ -56,17 +56,14 @@
 
                     </p:panelGrid>
 
-                    <div class="form-group">
-                        <div class="col-lg-2 ">
-                            <p:commandButton
-                                value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                                immediate="true" style="margin: 20px;"
-                                action="proveedores?faces-redirect=true"/>
-                            <p:commandButton
-                                value="Guardar" icon="ui-icon-disk"
-                                actionListener="#{proveedorBean.createOrUpdateProveedor}"/>
-                        </div>
-                    </div>
+                    <p:commandButton
+                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                        immediate="true" style="margin-bottom: 10px; width: 15%;"
+                        action="proveedores?faces-redirect=true"/>
+                    <p:commandButton
+                        value="Guardar" icon="ui-icon-disk" 
+                        actionListener="#{proveedorBean.createOrUpdateProveedor}"/>
+
 
                 </div>
             </h:form>

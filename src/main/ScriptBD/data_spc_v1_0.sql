@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-08-2017 a las 14:58:29
+-- Tiempo de generación: 09-08-2017 a las 10:45:40
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `date_created` datetime NOT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
   `last_updated` datetime NOT NULL,
@@ -77,7 +76,7 @@ CREATE TABLE `cliente` (
   `movil` int(9) NOT NULL DEFAULT '0',
   `municipio` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) NOT NULL,
-  `observaciones` varchar(255) DEFAULT NULL,
+  `observaciones` varchar(4000) DEFAULT NULL,
   `provincia` varchar(255) DEFAULT NULL,
   `telefono` int(9) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -92,7 +91,12 @@ INSERT INTO `cliente` (`id`, `apellidos`, `codigo`, `codigo_postal`, `date_creat
 (3, '', NULL, 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'martin', '', '', 0),
 (4, '', NULL, 0, '2017-08-08 00:00:00', '', '', '', b'0', '2017-08-08 00:00:00', 0, '', 'maria', '', '', 0),
 (5, '', NULL, 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'marina', '', '', 0),
-(6, '', '176', 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'ROCIO', '', '', 0);
+(6, '', '176', 0, '2017-08-08 00:00:00', '', '', '', b'1', '2017-08-08 00:00:00', 0, '', 'ROCIO', '', '', 0),
+(7, '', '177', 0, '2017-08-09 00:00:00', '', '', '', b'1', '2017-08-09 00:00:00', 0, '', 'Pepe', '', '', 0),
+(8, '', '178', 0, '2017-08-09 00:00:00', '', '', '', b'1', '2017-08-09 00:00:00', 0, '', 'Miguel 2', '', '', 0),
+(9, '', '1709', 0, '2017-08-09 00:00:00', '', '', '', b'1', '2017-08-09 00:00:00', 0, '', 'Miguel 3', '', '', 0),
+(10, '', '1710', 0, '2017-08-09 00:00:00', '', '', '', b'1', '2017-08-09 00:00:00', 0, '', 'Miguel 4', '', '', 0),
+(11, 'lopez garcia', '1711', 41530, '2017-08-09 00:00:00', 'calle del rio, 2', '11222333a', 'adas@asddas.com', b'1', '2017-08-09 00:00:00', 600010203, 'moron de la fra', 'Luis ', '', 'sevilla', 955851122);
 
 -- --------------------------------------------------------
 
@@ -113,7 +117,6 @@ CREATE TABLE `cliente_seguimiento` (
 
 CREATE TABLE `componente` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `coste` double DEFAULT NULL,
   `date_created` datetime NOT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
@@ -144,7 +147,6 @@ CREATE TABLE `componente_proveedor` (
 
 CREATE TABLE `pago` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `date_created` datetime NOT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
   `last_updated` datetime NOT NULL,
@@ -159,22 +161,29 @@ CREATE TABLE `pago` (
 
 CREATE TABLE `proveedor` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `cif` varchar(255) DEFAULT NULL,
-  `codigo_postal` int(5) DEFAULT NULL,
+  `codigo_postal` int(5) DEFAULT '0',
   `date_created` datetime NOT NULL,
   `direccion` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
-  `last_updated` datetime NOT NULL,
-  `movil` int(9) DEFAULT NULL,
+  `last_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `movil` int(9) NOT NULL DEFAULT '0',
   `municipio` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) NOT NULL,
-  `observaciones` varchar(255) DEFAULT NULL,
+  `observaciones` varchar(4000) DEFAULT NULL,
   `persona_contacto` varchar(255) DEFAULT NULL,
   `provincia` varchar(255) DEFAULT NULL,
-  `telefono` int(9) DEFAULT NULL
+  `telefono` int(9) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `proveedor`
+--
+
+INSERT INTO `proveedor` (`id`, `cif`, `codigo_postal`, `date_created`, `direccion`, `email`, `enabled`, `last_updated`, `movil`, `municipio`, `nombre`, `observaciones`, `persona_contacto`, `provincia`, `telefono`) VALUES
+(1, '11111111-X', 0, '2017-08-09 09:03:39', '', '', b'1', '2017-08-09 09:20:13', 0, '', 'Proveedor1', '', NULL, '', 0),
+(2, '22222222C', 0, '2017-08-09 09:02:56', '', 'a', b'1', '2017-08-09 09:43:42', 0, '', 'Proveedor2', '', NULL, '', 0);
 
 -- --------------------------------------------------------
 
@@ -214,13 +223,12 @@ INSERT INTO `role` (`id`, `authority`, `rolname`) VALUES
 
 CREATE TABLE `seguimiento` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `color` varchar(255) DEFAULT NULL,
   `date_created` datetime NOT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
   `last_updated` datetime NOT NULL,
   `modelo` varchar(255) DEFAULT NULL,
-  `observacion` varchar(255) DEFAULT NULL
+  `observacion` varchar(4000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -425,7 +433,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT de la tabla `componente`
 --
@@ -445,7 +453,7 @@ ALTER TABLE `pago`
 -- AUTO_INCREMENT de la tabla `proveedor`
 --
 ALTER TABLE `proveedor`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `role`
 --

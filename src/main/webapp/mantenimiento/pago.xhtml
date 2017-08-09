@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../WEB-INF/template/layout.xhtml">
+        <ui:define name="content">
+            <p:messages id="pag-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
+            <h:form  id="pagoForm" prependId="false" >
+                <div class="ui-fluid">
+
+                    <legend><h:outputText value="#{pagoBean.editTitle} : #{pagoBean.selectedPago.pago} " /></legend>
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                 layout="grid" styleClass="ui-panelgrid-blank">
+
+                        <p:outputLabel for="nombre" value="Nombre"/>
+                        <p:inputText id="nombre"  value="#{pagoBean.selectedPago.pago}"
+                                     required="true"/>
+
+                        <h:outputLabel for="activo" value="¿Activo?" />
+                        <p:selectBooleanCheckbox id="enabled"  value="#{pagoBean.selectedPago.enabled}" />      
+
+
+                    </p:panelGrid>
+                    <p:commandButton
+                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                        immediate="true" style="margin-bottom: 10px; width: 15%;"
+                        action="pagos?faces-redirect=true"/>
+                    <p:commandButton
+                        value="Guardar" icon="ui-icon-disk"
+                        actionListener="#{pagoBean.createOrUpdatePago}"/>
+
+
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
