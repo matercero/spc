@@ -22,7 +22,7 @@ import javax.persistence.TemporalType;
  * @author mangel.tercero
  */
 @Entity
-@Table(name = "categoria", catalog = "data_spc", schema = "")
+@Table(name = "categoria")
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;

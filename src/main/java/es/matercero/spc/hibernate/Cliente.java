@@ -69,12 +69,12 @@ public class Cliente implements Serializable {
     private Date lastUpdated;
 
     // Relaciones
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinTable(name = "cliente_seguimiento",
-            joinColumns = {
-                @JoinColumn(name = "cliente_seguimientos_id")},
-            inverseJoinColumns = {
-                @JoinColumn(name = "seguimiento_id")})
+//    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+//    @JoinTable(name = "cliente_seguimiento",
+//            joinColumns = {
+//                @JoinColumn(name = "cliente_seguimientos_id")},
+//            inverseJoinColumns = {
+//                @JoinColumn(name = "seguimiento_id")})
 
     /**
      * @return the id
