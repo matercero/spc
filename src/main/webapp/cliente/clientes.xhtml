@@ -44,11 +44,20 @@
                                                          target="#{clienteBean.selectedCliente}" />
                         </p:commandButton>
 
-                        <p:commandButton action="cliente?faces-redirect=true"
-                                         icon="ui-icon-trash" title="Eliminar">
-                            <f:setPropertyActionListener value="#{v_cli}" 
-                                                         target="#{clienteBean.selectedCliente}" />
+                        <p:commandButton  icon="ui-icon-trash" title="Eliminar"
+                                          action="#{clienteBean.deleteCliente}"
+                                          update="clienteForm">
+                            <f:setPropertyActionListener value="#{v_cli}"
+                                                         target="#{clienteBean.selectedCliente}" />                                
+                            <p:confirm header="Confirmation" message="¿Esta seguro de eliminar?" 
+                                       icon="ui-icon-alert" />
                         </p:commandButton>
+
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+
 
                         <p:commandButton title="Crear seguimiento" icon="ui-icon-cart"
                                          actionListener="#{seguimientoBean.newSeguimiento}"

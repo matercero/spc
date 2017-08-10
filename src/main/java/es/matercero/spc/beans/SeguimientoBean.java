@@ -116,4 +116,9 @@ public class SeguimientoBean implements Serializable {
         selectedSeguimiento = new Seguimiento();
     }
 
+    public void deleteCliente(ActionEvent actionEvent) {
+        selectedSeguimiento.setEnabled(false);
+        seguimientoService.createSeguimiento(selectedSeguimiento);
+    }
+
 }

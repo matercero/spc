@@ -12,8 +12,14 @@
 
             <h:form>    
                 <p:menubar>
-                    <p:menuitem value="Seguimientos"  icon="ui-icon-grip-diagonal-se"  
-                                outcome="/mantenimiento/seguimientos.jsf"/>                        
+                    <p:menuitem value=""  icon="ui-icon-home"  
+                                outcome="/home.jsf" title="Inicio"/> 
+
+                    <p:submenu label="Seguimientos" icon="ui-icon-bookmark">
+                        <p:menuitem value="Lista"  icon="ui-icon-grip-diagonal-se"  
+                                    outcome="/mantenimiento/seguimientos.jsf"/> 
+                        <p:menuitem value="Planning" outcome="/mantenimiento/planning.jsf" />
+                    </p:submenu>
 
                     <p:menuitem value="Clientes" outcome="/cliente/clientes.jsf"
                                 icon="ui-icon-person"/>

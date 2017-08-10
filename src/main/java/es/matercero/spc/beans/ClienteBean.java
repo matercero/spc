@@ -108,8 +108,8 @@ public class ClienteBean implements Serializable {
             // el codigo del cliente se forma con 
             // Anyo actual 'yy + id'
             SimpleDateFormat sf = new SimpleDateFormat("yy");
-            String id =  String.format("%02d", (Integer) selectedCliente.getId());
-            String codigo = sf.format(Calendar.getInstance().getTime()) + id ;
+            String id = String.format("%02d", (Integer) selectedCliente.getId());
+            String codigo = sf.format(Calendar.getInstance().getTime()) + id;
             selectedCliente.setCodigo(codigo);
             clienteService.updateCliente(selectedCliente);
             reiniciarListaClientes();
@@ -126,6 +126,7 @@ public class ClienteBean implements Serializable {
     }
 
     private void reiniciarListaClientes() {
+        clientes.clear();
         clientes = getClienteService().queryAllClientes();
     }
 
@@ -137,6 +138,17 @@ public class ClienteBean implements Serializable {
     public void newCliente(ActionEvent actionEvent) {
         selectedCliente = new Cliente();
 
+    }
+
+    public String deleteCliente() {
+        if (selectedCliente != null) {
+            selectedCliente.setEnabled(false);
+            clienteService.updateCliente(selectedCliente);
+            reiniciarListaClientes();
+            Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Cliente actualizado",
+                    "El Cliente ha sido dado de baja correctamente.");
+        }
+        return "clientes?faces-redirect=true";
     }
 
 }
