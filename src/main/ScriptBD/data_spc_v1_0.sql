@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-08-2017 a las 09:14:22
+-- Tiempo de generación: 11-08-2017 a las 13:41:50
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -134,15 +134,18 @@ CREATE TABLE `componente` (
   `date_created` datetime NOT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
   `last_updated` datetime NOT NULL,
-  `nombre` varchar(255) NOT NULL
+  `nombre` varchar(255) NOT NULL,
+  `defecto` bit(1) NOT NULL DEFAULT b'0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `componente`
 --
 
-INSERT INTO `componente` (`id`, `coste`, `date_created`, `enabled`, `last_updated`, `nombre`) VALUES
-(1, 12, '2017-08-09 12:50:31', b'1', '2017-08-09 12:50:31', 'componente1');
+INSERT INTO `componente` (`id`, `coste`, `date_created`, `enabled`, `last_updated`, `nombre`, `defecto`) VALUES
+(1, 12, '2017-08-09 12:50:31', b'1', '2017-08-09 12:50:31', 'componente1', b'0'),
+(2, 1, '0000-00-00 00:00:00', b'1', '0000-00-00 00:00:00', 'componente2', b'0'),
+(3, 2, '0000-00-00 00:00:00', b'1', '0000-00-00 00:00:00', 'componente3', b'0');
 
 -- --------------------------------------------------------
 
@@ -153,10 +156,7 @@ INSERT INTO `componente` (`id`, `coste`, `date_created`, `enabled`, `last_update
 DROP TABLE IF EXISTS `componente_proveedor`;
 CREATE TABLE `componente_proveedor` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `componente_id` bigint(20) NOT NULL,
-  `date_created` datetime NOT NULL,
-  `last_updated` datetime NOT NULL,
   `proveedor_id` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -198,7 +198,7 @@ CREATE TABLE `proveedor` (
   `direccion` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `enabled` bit(1) NOT NULL DEFAULT b'1',
-  `last_updated` datetime NOT NULL,
+  `last_updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `movil` int(9) NOT NULL DEFAULT '0',
   `municipio` varchar(255) DEFAULT NULL,
   `nombre` varchar(255) NOT NULL,
@@ -274,13 +274,10 @@ CREATE TABLE `seguimiento` (
 DROP TABLE IF EXISTS `seguimiento_componente`;
 CREATE TABLE `seguimiento_componente` (
   `id` bigint(20) NOT NULL,
-  `version` bigint(20) NOT NULL,
   `cantidad` int(11) NOT NULL,
   `componente_id` bigint(20) NOT NULL,
-  `date_created` datetime NOT NULL,
   `fecha_entrega` datetime NOT NULL,
   `fecha_pedido` datetime NOT NULL,
-  `last_updated` datetime NOT NULL,
   `numero_factura` varchar(255) NOT NULL,
   `observaciones` varchar(255) NOT NULL,
   `seguimiento_id` bigint(20) NOT NULL
@@ -476,7 +473,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de la tabla `componente`
 --
 ALTER TABLE `componente`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `componente_proveedor`
 --
