@@ -67,6 +67,8 @@
                 <value>es.matercero.spc.hibernate.Componente</value>
                 <value>es.matercero.spc.hibernate.Pago</value>
                 <value>es.matercero.spc.hibernate.Categoria</value>
+                <value>es.matercero.spc.hibernate.Seguimiento</value>
+                <value>es.matercero.spc.hibernate.SeguimientoComponente</value>
             </list>
         </property>
     </bean>

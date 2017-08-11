@@ -55,4 +55,6 @@ public interface IMantenimientoService {
     void createSeguimiento(Seguimiento entity);
     
     void updateSeguimiento(Seguimiento entity);
+
+   List<Componente> queryAllComponentesPorDefecto();
 }

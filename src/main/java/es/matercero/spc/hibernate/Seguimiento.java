@@ -7,15 +7,20 @@ package es.matercero.spc.hibernate;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,6 +29,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "seguimiento")
 public class Seguimiento implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "seguimiento")
+    private Set<SeguimientoComponente> seguimientoComponenteSet;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +56,10 @@ public class Seguimiento implements Serializable {
     private String modelo;
     @Column(name = "observacion")
     private String observacion;
+    
+    
+    private Set<SeguimientoComponente> seguimientoComponente = new HashSet<SeguimientoComponente>(0);
+
 
     public Seguimiento() {
     }
@@ -142,6 +154,29 @@ public class Seguimiento implements Serializable {
     @Override
     public String toString() {
         return id + " - " + modelo;
+    }
+
+    @XmlTransient
+    public Set<SeguimientoComponente> getSeguimientoComponenteSet() {
+        return seguimientoComponenteSet;
+    }
+
+    public void setSeguimientoComponenteSet(Set<SeguimientoComponente> seguimientoComponenteSet) {
+        this.seguimientoComponenteSet = seguimientoComponenteSet;
+    }
+
+    /**
+     * @return the seguimientoComponente
+     */
+    public Set<SeguimientoComponente> getSeguimientoComponente() {
+        return seguimientoComponente;
+    }
+
+    /**
+     * @param seguimientoComponente the seguimientoComponente to set
+     */
+    public void setSeguimientoComponente(Set<SeguimientoComponente> seguimientoComponente) {
+        this.seguimientoComponente = seguimientoComponente;
     }
 
 }

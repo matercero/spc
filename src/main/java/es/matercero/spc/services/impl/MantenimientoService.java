@@ -16,6 +16,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -167,6 +168,16 @@ public class MantenimientoService implements IMantenimientoService, Serializable
      */
     public void setSeguimientoDao(IDao<Seguimiento> seguimientoDao) {
         this.seguimientoDao = seguimientoDao;
+    }
+
+    @Override
+    public List<Componente> queryAllComponentesPorDefecto() {
+        DetachedCriteria dc = DetachedCriteria.forClass(Componente.class, "componente");
+        dc.add(Restrictions.eq("enabled", true));
+        dc.add(Restrictions.eq("defecto", true));
+        dc.addOrder(Order.asc("nombre")); 
+        dc.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        return getComponenteDao().find(dc);
     }
 
 }

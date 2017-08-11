@@ -5,12 +5,16 @@
  */
 package es.matercero.spc.beans;
 
+import es.matercero.spc.hibernate.Componente;
 import es.matercero.spc.hibernate.Seguimiento;
+import es.matercero.spc.hibernate.SeguimientoComponente;
 import es.matercero.spc.services.IMantenimientoService;
 import es.matercero.spc.utils.Utilidades;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.event.ActionEvent;
 import org.apache.log4j.Logger;
@@ -109,11 +113,25 @@ public class SeguimientoBean implements Serializable {
      * @return título de edición
      */
     public String getEditTitle() {
-        return ((selectedSeguimiento == null || selectedSeguimiento.getId() == null) ? "Nuevo seguimiento" : "Editar seguimiento");
+        return ((selectedSeguimiento == null || selectedSeguimiento.getId() == null) ? 
+                "Nuevo seguimiento" : "Editar seguimiento");
     }
 
     public void newSeguimiento(ActionEvent actionEvent) {
         selectedSeguimiento = new Seguimiento();
+        //Cjto de componentes para el seguimiento
+        Set<SeguimientoComponente> seguimientoComponente = new HashSet<SeguimientoComponente>();
+
+        // Componentes por defecto
+        List<Componente> componentesPorDefecto = seguimientoService.queryAllComponentesPorDefecto();
+        for (Componente componente : componentesPorDefecto) {
+            SeguimientoComponente e = new SeguimientoComponente();
+            e.setComponente(componente);
+            e.setSeguimiento(selectedSeguimiento);
+            e.setCantidad(0);
+            seguimientoComponente.add(e);
+        }
+        selectedSeguimiento.setSeguimientoComponente(seguimientoComponente);
     }
 
     public void deleteCliente(ActionEvent actionEvent) {

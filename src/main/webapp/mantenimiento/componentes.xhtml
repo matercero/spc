@@ -26,6 +26,19 @@
                         <h:outputText value="#{v_com.coste}" />
                     </p:column>    
 
+                    <p:column headerText="¿Activa?" sortBy="#{v_com.enabled}"
+                              style="width: 5%;text-align: center">
+                        <h:outputText value="Si" rendered="#{v_com.enabled}" />
+                        <h:outputText value="No" rendered="#{!v_com.enabled}" />
+                    </p:column>
+                    
+                    <p:column headerText="Por Defecto" sortBy="#{v_com.defecto}"
+                              style="width: 5%;text-align: center">
+                        <h:outputText value="Si" rendered="#{v_com.defecto}" />
+                        <h:outputText value="No" rendered="#{!v_com.defecto}" />
+                    </p:column>
+
+
                     <p:column headerText="Acciones">
                         <p:commandButton action="componente?faces-redirect=true"
                                          icon="ui-icon-pencil" title="Editar">

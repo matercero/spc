@@ -7,15 +7,19 @@ package es.matercero.spc.hibernate;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,6 +28,9 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "componente")
 public class Componente implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "componente")
+    private Set<SeguimientoComponente> seguimientoComponenteSet;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,6 +55,8 @@ public class Componente implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    @Column(name = "defecto")
+    private boolean defecto;
 
     public Componente() {
     }
@@ -135,6 +144,29 @@ public class Componente implements Serializable {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @XmlTransient
+    public Set<SeguimientoComponente> getSeguimientoComponenteSet() {
+        return seguimientoComponenteSet;
+    }
+
+    public void setSeguimientoComponenteSet(Set<SeguimientoComponente> seguimientoComponenteSet) {
+        this.seguimientoComponenteSet = seguimientoComponenteSet;
+    }
+
+    /**
+     * @return the defecto
+     */
+    public boolean isDefecto() {
+        return defecto;
+    }
+
+    /**
+     * @param defecto the defecto to set
+     */
+    public void setDefecto(boolean defecto) {
+        this.defecto = defecto;
     }
     
 }

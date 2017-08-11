@@ -9,7 +9,7 @@
 
     <ui:composition template="../WEB-INF/template/layout.xhtml">
         <ui:define name="content">
-             <p:messages id="seg-messages" showDetail="true" showSummary="false" autoUpdate="true" closable="true"/>   
+            <p:messages id="seg-messages" showDetail="true" showSummary="false" autoUpdate="true" closable="true"/>   
             <h:form id="seguimientoForm" prependId="false">
                 <div class="ui-fluid">
 
@@ -24,6 +24,32 @@
                         <h:outputLabel for="activo" value="¿Activo?" />
                         <p:selectBooleanCheckbox id="enabled"  value="#{seguimientoBean.selectedSeguimiento.enabled}" />      
 
+                        <p:dataTable var="v_segccomp" value="#{seguimientoBean.selectedSeguimiento.seguimientoComponente}"
+                                     paginator="true"
+                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="15,20"
+                                     style="width:100%;"  paginatorPosition="bottom">
+
+                            <p:column headerText="Nombre" sortBy="#{v_segccomp.componente.nombre}">
+                                <h:outputText value="#{v_segccomp.componente.nombre}" />
+                            </p:column>    
+                            <p:column headerText="Coste" sortBy="#{v_segccomp.componente.coste}">
+                                <h:outputText value="#{v_segccomp.componente.coste}" />
+                            </p:column>    
+                            <p:column headerText="Coste" sortBy="#{v_segccomp.cantidad}">
+                                <h:outputText value="#{v_segccomp.cantidad}" />
+                            </p:column>    
+                            <p:column headerText="fechaPedido" sortBy="#{v_segccomp.fechaPedido}">
+                                <h:outputText value="#{v_segccomp.fechaPedido}" />
+                            </p:column>    
+                            <p:column headerText="fechaEntrega" sortBy="#{v_segccomp.fechaEntrega}">
+                                <h:outputText value="#{v_segccomp.fechaEntrega}" />
+                            </p:column>    
+                            <p:column headerText="numeroFactura" sortBy="#{v_segccomp.numeroFactura}">
+                                <h:outputText value="#{v_segccomp.numeroFactura}" />
+                            </p:column>    
+
+                        </p:dataTable>
                     </p:panelGrid>
 
                     <p:commandButton
