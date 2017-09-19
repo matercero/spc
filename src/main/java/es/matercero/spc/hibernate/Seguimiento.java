@@ -58,8 +58,6 @@ public class Seguimiento implements Serializable {
     private String observacion;
     
     
-    private Set<SeguimientoComponente> seguimientoComponente = new HashSet<SeguimientoComponente>(0);
-
 
     public Seguimiento() {
     }
@@ -165,18 +163,6 @@ public class Seguimiento implements Serializable {
         this.seguimientoComponenteSet = seguimientoComponenteSet;
     }
 
-    /**
-     * @return the seguimientoComponente
-     */
-    public Set<SeguimientoComponente> getSeguimientoComponente() {
-        return seguimientoComponente;
-    }
-
-    /**
-     * @param seguimientoComponente the seguimientoComponente to set
-     */
-    public void setSeguimientoComponente(Set<SeguimientoComponente> seguimientoComponente) {
-        this.seguimientoComponente = seguimientoComponente;
-    }
+  
 
 }

@@ -131,7 +131,7 @@ public class SeguimientoBean implements Serializable {
             e.setCantidad(0);
             seguimientoComponente.add(e);
         }
-        selectedSeguimiento.setSeguimientoComponente(seguimientoComponente);
+        selectedSeguimiento.setSeguimientoComponenteSet(seguimientoComponente);
     }
 
     public void deleteCliente(ActionEvent actionEvent) {
