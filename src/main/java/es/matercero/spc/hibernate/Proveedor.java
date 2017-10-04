@@ -7,11 +7,15 @@ package es.matercero.spc.hibernate;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
@@ -43,16 +47,16 @@ public class Proveedor implements Serializable {
     private String email;
     @Column(name = "movil", length = 9)
     private int movil;
-    @Column(name = "telefono", length = 9)
-    private int telefono;
     @Column(name = "municipio")
     private String municipio;
     @Column(name = "provincia")
     private String provincia;
+    @Column(name = "codigo_postal", columnDefinition="int(5,0) default '0'")
+    private int codigoPostal;
+    @Column(name = "telefono")
+    private int telefono;
     @Column(name = "enabled")
     private boolean enabled;
-    @Column(name = "codigo_postal", length = 5)
-    private int codigoPostal;
     @Column(name = "observaciones")
     private String observaciones;
     @Column(name = "date_created")
@@ -61,6 +65,12 @@ public class Proveedor implements Serializable {
     @Column(name = "last_updated")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date lastUpdated;
+
+    @JoinTable(name = "categoria_proveedor", joinColumns = {
+        @JoinColumn(name = "proveedor_id", referencedColumnName = "id")}, inverseJoinColumns = {
+        @JoinColumn(name = "categoria_proveedor_id", referencedColumnName = "id")})
+    @ManyToMany
+    private List<Categoria> categoriaList;
 
     /**
      * @return the id
@@ -296,7 +306,19 @@ public class Proveedor implements Serializable {
         }
         return true;
     }
-    
-    
+
+    /**
+     * @return the categoriaList
+     */
+    public List<Categoria> getCategoriaList() {
+        return categoriaList;
+    }
+
+    /**
+     * @param categoriaList the categoriaList to set
+     */
+    public void setCategoriaList(List<Categoria> categoriaList) {
+        this.categoriaList = categoriaList;
+    }
 
 }

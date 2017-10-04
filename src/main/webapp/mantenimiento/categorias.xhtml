@@ -18,12 +18,27 @@
                              rowsPerPageTemplate="15,20"
                              style="width:100%;"  paginatorPosition="bottom">
 
-                     <p:column headerText="Nombre" sortBy="#{v_cat.nombre}">
+                    <p:column headerText="Nombre" sortBy="#{v_cat.nombre}">
                         <h:outputText value="#{v_cat.nombre}" />
                     </p:column>    
-                    
-               </p:dataTable>
-                
+
+                    <p:column headerText="Acciones">
+                        <p:commandButton action="categoria?faces-redirect=true"
+                                         icon="ui-icon-pencil" title="Editar">
+                            <f:setPropertyActionListener value="#{v_cat}" 
+                                                         target="#{categoriaBean.selectedCategoria}" />
+                        </p:commandButton>
+
+                        <p:commandButton action="categoria?faces-redirect=true"
+                                         icon="ui-icon-trash" title="Eliminar">
+                            <f:setPropertyActionListener value="#{v_cat}" 
+                                                         target="#{categoriaBean.selectedCategoria}" />
+                        </p:commandButton>
+
+                    </p:column>
+
+                </p:dataTable>
+
                 <h:panelGroup style="display: block; text-align: center; margin-top: 15px">
                     <p:commandButton value="Nuevo categoria"  icon="ui-icon-plusthick"
                                      actionListener="#{categoriaBean.newCategoria}"

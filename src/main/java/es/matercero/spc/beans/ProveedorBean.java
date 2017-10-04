@@ -5,16 +5,20 @@
  */
 package es.matercero.spc.beans;
 
+import es.matercero.spc.hibernate.Categoria;
 import es.matercero.spc.hibernate.Proveedor;
+import es.matercero.spc.services.IMantenimientoService;
 import es.matercero.spc.services.IProveedorService;
 import es.matercero.spc.utils.Utilidades;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.event.ActionEvent;
 import org.apache.log4j.Logger;
+import org.primefaces.model.DualListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -35,8 +39,11 @@ public class ProveedorBean implements Serializable {
 
     @Autowired
     private IProveedorService proveedorService;
+    @Autowired
+    private IMantenimientoService mantenimientoService;
     private List<Proveedor> proveedores;
     private Proveedor selectedProveedor;
+    private DualListModel<Categoria> selectedCategoria;
 
     /**
      * @return the proveedorService
@@ -90,6 +97,7 @@ public class ProveedorBean implements Serializable {
      */
     public void newProveedor(ActionEvent actionEvent) {
         selectedProveedor = new Proveedor();
+        selectedProveedor.setCodigoPostal(0);
     }
 
     /**
@@ -121,13 +129,72 @@ public class ProveedorBean implements Serializable {
     private void reiniciarListaProveedors() {
         proveedores = getProveedorService().queryAllProveedores();
     }
-    
-     /**
+
+    /**
      *
      * @return título de edición
      */
     public String getEditTitle() {
         return ((selectedProveedor == null || selectedProveedor.getId() == null) ? "Nuevo proveedor" : "Editar proveedor");
+    }
+
+    /**
+     * @return the selectedCategoria
+     */
+    public DualListModel<Categoria> getSelectedCategoria() {
+        List<Categoria> allCategorias = new ArrayList<Categoria>(getCategorias());
+        List<Categoria> proveedorCategorias;
+        if (selectedProveedor.getCategoriaList() == null) {
+            proveedorCategorias = new ArrayList<Categoria>(0);
+        } else {
+            proveedorCategorias = new ArrayList<Categoria>(selectedProveedor.getCategoriaList());
+        }
+        // Vamos quitando de la lista de todas las categor
+//        for (Iterator<Categoria> it = proveedorCategorias.iterator(); it.hasNext();) {
+//            Categoria cat = it.next();
+//            if (cat != null && Role.AUTHORITY_USER.equals(role.getAuthority())) {
+//                it.remove();
+//                break;
+//            }
+//        }
+        for (Iterator<Categoria> it = allCategorias.iterator(); it.hasNext();) {
+            Categoria cat = it.next();
+            if (cat != null && proveedorCategorias.contains(cat)) {
+                it.remove();
+            }
+        }
+        selectedCategoria = new DualListModel<Categoria>(allCategorias, proveedorCategorias);
+        return selectedCategoria;
+    }
+
+    /**
+     * @param selectedCategoria the selectedCategoria to set
+     */
+    public void setSelectedCategoria(DualListModel<Categoria> selectedCategoria) {
+        this.selectedCategoria = selectedCategoria;
+    }
+
+    /**
+     * Recupera todas las categorias
+     *
+     * @return
+     */
+    private List<Categoria> getCategorias() {
+        return getMantenimientoService().queryAllCategorias();
+    }
+
+    /**
+     * @return the mantenimientoService
+     */
+    public IMantenimientoService getMantenimientoService() {
+        return mantenimientoService;
+    }
+
+    /**
+     * @param mantenimientoService the mantenimientoService to set
+     */
+    public void setMantenimientoService(IMantenimientoService mantenimientoService) {
+        this.mantenimientoService = mantenimientoService;
     }
 
 }

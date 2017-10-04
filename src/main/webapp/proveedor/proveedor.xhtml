@@ -54,6 +54,22 @@
                         <p:outputLabel for="observacion" value="Observación"/>
                         <p:inputTextarea id="observacion"  value="#{proveedorBean.selectedProveedor.observaciones}" />
 
+                        <p:outputLabel for="categoria" value="Seleccione categoría/s"/>
+                        <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                            <p:row>
+                                <p:column rowspan="6"  style="background-color: white;">
+                                    <p:pickList id="categoria"
+                                                value="#{proveedorBean.selectedCategoria}"
+                                                var="cat"
+                                                itemLabel="#{cat.nombre}"
+                                                itemValue="#{cat}">
+                                        <f:facet name="sourceCaption">Disponibles</f:facet>
+                                        <f:facet name="targetCaption">Asignado/s</f:facet>
+                                    </p:pickList>
+                                </p:column>
+                            </p:row>
+                        </h:panelGrid>
+
                     </p:panelGrid>
 
                     <p:commandButton

@@ -11,10 +11,12 @@
         <ui:define name="content">
             <p:messages id="cat-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="categoriaForm" prependId="false" >
-                <div class="ui-fluid">
 
-                    <legend><h:outputText value="#{categoriaBean.editTitle} : #{categoriaBean.selectedCategoria.nombre} " /></legend>
-                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                <legend><h3><h:outputText value="#{categoriaBean.editTitle} : #{categoriaBean.selectedCategoria.nombre} " /></h3>
+                </legend>
+
+                <div class="ui-fluid">
+                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-8"
                                  layout="grid" styleClass="ui-panelgrid-blank">
 
                         <p:outputLabel for="nombre" value="Nombre"/>

@@ -119,15 +119,15 @@ public class CategoriaBean implements Serializable {
             selectedCategoria.setEnabled(true);
             categoriaService.createCategoria(selectedCategoria);
             Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Categoria creado",
-                    "El Categoria se ha creado correctamente.");
+                    "La Categoria se ha creado correctamente.");
         } else {
             selectedCategoria.setLastUpdated(Calendar.getInstance().getTime());
             categoriaService.updateCategoria(selectedCategoria);
             Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Categoria actualizado",
-                    "El Categoria se ha actualizado correctamente.");
+                    "La Categoria se ha actualizado correctamente.");
         }
         reiniciarListaCategorias();
-        return "cliente?faces-redirect=true";
+        return "categoria?faces-redirect=true";
     }
 
 }

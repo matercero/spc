@@ -39,7 +39,8 @@ public class User implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "rol_id")})
+            inverseJoinColumns = {@JoinColumn(name = "rol_id")}
+    )
     private List<Role> roles;
 
     /**
