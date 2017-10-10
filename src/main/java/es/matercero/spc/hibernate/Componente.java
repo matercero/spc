@@ -43,14 +43,14 @@ public class Componente implements Serializable {
     private Double coste;
     @Basic(optional = false)
     @Column(name = "date_created")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date dateCreated;
     @Basic(optional = false)
     @Column(name = "enabled")
     private boolean enabled;
     @Basic(optional = false)
     @Column(name = "last_updated")
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date lastUpdated;
     @Basic(optional = false)
     @Column(name = "nombre")

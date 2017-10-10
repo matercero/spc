@@ -114,7 +114,7 @@ public class SeguimientoBean implements Serializable {
      */
     public String getEditTitle() {
         return ((selectedSeguimiento == null || selectedSeguimiento.getId() == null) ? 
-                "Nuevo seguimiento" : "Editar seguimiento");
+                "Nuevo seguimiento" : "Editar seguimiento: ");
     }
 
     public void newSeguimiento(ActionEvent actionEvent) {

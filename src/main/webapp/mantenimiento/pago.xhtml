@@ -12,29 +12,29 @@
             <p:messages id="pag-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="pagoForm" prependId="false" >
                 <div class="ui-fluid">
+                    <fieldset style="margin: 1em">
+                        <legend><h3><h:outputText value="#{pagoBean.editTitle}  #{pagoBean.selectedPago.pago} " /></h3></legend>
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                     layout="grid" styleClass="ui-panelgrid-blank">
 
-                    <legend><h:outputText value="#{pagoBean.editTitle} : #{pagoBean.selectedPago.pago} " /></legend>
-                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
-                                 layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:outputLabel for="nombre" value="Nombre"/>
+                            <p:inputText id="nombre"  value="#{pagoBean.selectedPago.pago}"
+                                         required="true"/>
 
-                        <p:outputLabel for="nombre" value="Nombre"/>
-                        <p:inputText id="nombre"  value="#{pagoBean.selectedPago.pago}"
-                                     required="true"/>
-
-                        <h:outputLabel for="activo" value="¿Activo?" />
-                        <p:selectBooleanCheckbox id="enabled"  value="#{pagoBean.selectedPago.enabled}" />      
-
-
-                    </p:panelGrid>
-                    <p:commandButton
-                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                        immediate="true" style="margin-bottom: 10px; width: 15%;"
-                        action="pagos?faces-redirect=true"/>
-                    <p:commandButton
-                        value="Guardar" icon="ui-icon-disk"
-                        actionListener="#{pagoBean.createOrUpdatePago}"/>
+                            <h:outputLabel for="activo" value="¿Activo?" />
+                            <p:selectBooleanCheckbox id="enabled"  value="#{pagoBean.selectedPago.enabled}" />      
 
 
+                        </p:panelGrid>
+                        <p:commandButton
+                            value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                            immediate="true" style="margin-bottom: 10px; width: 15%;"
+                            action="pagos?faces-redirect=true"/>
+                        <p:commandButton
+                            value="Guardar" icon="ui-icon-disk"
+                            actionListener="#{pagoBean.createOrUpdatePago}"/>
+
+                    </fieldset>
                 </div>
             </h:form>
         </ui:define>

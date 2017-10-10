@@ -247,11 +247,8 @@ public class UserBean implements Serializable {
      * @return título de edición
      */
     public String getEditUserTitle() {
-        if (selectedUser == null || selectedUser.getId() == null) {
-            return "Nuevo usuario";
-        } else {
-            return "Editar usuario";
-        }
+        return ((selectedUser == null || selectedUser.getId() == null)
+                ? "Nuevo usuario" : "Editar usuario: ");
     }
 
     /**

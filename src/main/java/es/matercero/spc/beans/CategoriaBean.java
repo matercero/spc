@@ -57,7 +57,7 @@ public class CategoriaBean implements Serializable {
      * @return título de edición
      */
     public String getEditTitle() {
-        return ((selectedCategoria == null || selectedCategoria.getId() == null) ? "Nuevo categoria" : "Editar categoria");
+        return ((selectedCategoria == null || selectedCategoria.getId() == null) ? "Nuevo categoria" : "Editar categoria: ");
     }
 
     /**

@@ -88,7 +88,7 @@ public class ClienteBean implements Serializable {
      * @return título de edición
      */
     public String getEditTitle() {
-        return ((selectedCliente == null || selectedCliente.getId() == null) ? "Nuevo cliente" : "Editar cliente");
+        return ((selectedCliente == null || selectedCliente.getId() == null) ? "Nuevo cliente" : "Editar cliente: ");
     }
 
     /**

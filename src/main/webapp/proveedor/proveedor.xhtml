@@ -12,75 +12,71 @@
             <p:messages id="cli-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="proveedorForm" prependId="false" >
                 <div class="ui-fluid">
+                    <fieldset style="margin: 1em">
+                        <legend><h3><h:outputText value="#{proveedorBean.editTitle} : #{proveedorBean.selectedProveedor.nombre} #{proveedorBean.selectedProveedor.personaContacto}"/></h3></legend>
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                     layout="grid" styleClass="ui-panelgrid-blank">
 
-                    <legend><h:outputText value="#{proveedorBean.editTitle} : #{proveedorBean.selectedProveedor.nombre} #{proveedorBean.selectedProveedor.personaContacto}"/>
+                            <p:outputLabel for="cif" value="CIF"/>
+                            <p:inputText id="cif" value="#{proveedorBean.selectedProveedor.cif}"/>
 
-                    </legend>
-                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
-                                 layout="grid" styleClass="ui-panelgrid-blank">
-
-
-                        <p:outputLabel for="cif" value="CIF"/>
-                        <p:inputText id="cif" value="#{proveedorBean.selectedProveedor.cif}"/>
-
-                        <p:outputLabel for="nombre" value="Nombre"/>
-                        <p:inputText id="nombre"  value="#{proveedorBean.selectedProveedor.nombre}" required="true"/>
+                            <p:outputLabel for="nombre" value="Nombre"/>
+                            <p:inputText id="nombre"  value="#{proveedorBean.selectedProveedor.nombre}" required="true"/>
 
 
-                        <p:outputLabel for="direccion" value="Dirección"/>
-                        <p:inputText id="direccion"  value="#{proveedorBean.selectedProveedor.direccion}" />
+                            <p:outputLabel for="direccion" value="Dirección"/>
+                            <p:inputText id="direccion"  value="#{proveedorBean.selectedProveedor.direccion}" />
 
-                        <p:outputLabel for="municipio" value="Municipio"/>
-                        <p:inputText id="municipio"  value="#{proveedorBean.selectedProveedor.municipio}" />
+                            <p:outputLabel for="municipio" value="Municipio"/>
+                            <p:inputText id="municipio"  value="#{proveedorBean.selectedProveedor.municipio}" />
 
-                        <p:outputLabel for="codigoPostal" value="Código Postal"/>
-                        <p:inputText id="codigoPostal"  value="#{proveedorBean.selectedProveedor.codigoPostal}" />
+                            <p:outputLabel for="codigoPostal" value="Código Postal"/>
+                            <p:inputText id="codigoPostal"  value="#{proveedorBean.selectedProveedor.codigoPostal}" />
 
-                        <p:outputLabel for="provincia" value="Provincia"/>
-                        <p:inputText id="provincia"  value="#{proveedorBean.selectedProveedor.provincia}" />
+                            <p:outputLabel for="provincia" value="Provincia"/>
+                            <p:inputText id="provincia"  value="#{proveedorBean.selectedProveedor.provincia}" />
 
-                        <p:outputLabel for="movil" value="Móvil"/>
-                        <p:inputText id="movil"  value="#{proveedorBean.selectedProveedor.movil}" />
+                            <p:outputLabel for="movil" value="Móvil"/>
+                            <p:inputText id="movil"  value="#{proveedorBean.selectedProveedor.movil}" />
 
-                        <p:outputLabel for="telefono" value="Teléfono"/>
-                        <p:inputText id="telefono"  value="#{proveedorBean.selectedProveedor.telefono}" />
+                            <p:outputLabel for="telefono" value="Teléfono"/>
+                            <p:inputText id="telefono"  value="#{proveedorBean.selectedProveedor.telefono}" />
 
-                        <p:outputLabel for="email" value="Email"/>
-                        <p:inputText id="email"  value="#{proveedorBean.selectedProveedor.email}" />
+                            <p:outputLabel for="email" value="Email"/>
+                            <p:inputText id="email"  value="#{proveedorBean.selectedProveedor.email}" />
 
-                        <h:outputLabel for="activo" value="¿Activo?" />
-                        <p:selectBooleanCheckbox id="enabled"  value="#{proveedorBean.selectedProveedor.enabled}" />      
+                            <h:outputLabel for="activo" value="¿Activo?" />
+                            <p:selectBooleanCheckbox id="enabled"  value="#{proveedorBean.selectedProveedor.enabled}" />      
 
-                        <p:outputLabel for="observacion" value="Observación"/>
-                        <p:inputTextarea id="observacion"  value="#{proveedorBean.selectedProveedor.observaciones}" />
+                            <p:outputLabel for="observacion" value="Observación"/>
+                            <p:inputTextarea id="observacion"  value="#{proveedorBean.selectedProveedor.observaciones}" />
 
-                        <p:outputLabel for="categoria" value="Seleccione categoría/s"/>
-                        <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
-                            <p:row>
-                                <p:column rowspan="6"  style="background-color: white;">
-                                    <p:pickList id="categoria"
-                                                value="#{proveedorBean.selectedCategoria}"
-                                                var="cat"
-                                                itemLabel="#{cat.nombre}"
-                                                itemValue="#{cat}">
-                                        <f:facet name="sourceCaption">Disponibles</f:facet>
-                                        <f:facet name="targetCaption">Asignado/s</f:facet>
-                                    </p:pickList>
-                                </p:column>
-                            </p:row>
-                        </h:panelGrid>
+                            <p:outputLabel for="categoria" value="Seleccione categoría/s"/>
+                            <h:panelGrid columns="1" cellpadding="5" style="width: 100%">
+                                <p:row>
+                                    <p:column rowspan="6"  style="background-color: white;">
+                                        <p:pickList id="categoria"
+                                                    value="#{proveedorBean.selectedCategoria}"
+                                                    var="cat"
+                                                    itemLabel="#{cat.nombre}"
+                                                    itemValue="#{cat}">
+                                            <f:facet name="sourceCaption">Disponibles</f:facet>
+                                            <f:facet name="targetCaption">Asignado/s</f:facet>
+                                        </p:pickList>
+                                    </p:column>
+                                </p:row>
+                            </h:panelGrid>
 
-                    </p:panelGrid>
+                        </p:panelGrid>
 
-                    <p:commandButton
-                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                        immediate="true" style="margin-bottom: 10px; width: 15%;"
-                        action="proveedores?faces-redirect=true"/>
-                    <p:commandButton
-                        value="Guardar" icon="ui-icon-disk" 
-                        actionListener="#{proveedorBean.createOrUpdateProveedor}"/>
-
-
+                        <p:commandButton
+                            value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                            immediate="true" style="margin-bottom: 10px; width: 15%;"
+                            action="proveedores?faces-redirect=true"/>
+                        <p:commandButton
+                            value="Guardar" icon="ui-icon-disk" 
+                            actionListener="#{proveedorBean.createOrUpdateProveedor}"/>
+                    </fieldset>
                 </div>
             </h:form>
         </ui:define>

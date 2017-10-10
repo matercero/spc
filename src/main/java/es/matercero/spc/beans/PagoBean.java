@@ -101,7 +101,7 @@ public class PagoBean implements Serializable {
      * @return título de edición
      */
     public String getEditTitle() {
-        return ((selectedPago == null || selectedPago.getId() == null) ? "Nuevo pago" : "Editar pago");
+        return ((selectedPago == null || selectedPago.getId() == null) ? "Nuevo pago" : "Editar pago: ");
     }
 
     /**

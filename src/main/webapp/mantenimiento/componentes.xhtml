@@ -22,8 +22,8 @@
                         <h:outputText value="#{v_com.nombre}" />
                     </p:column>    
 
-                    <p:column headerText="Coste" sortBy="#{v_com.coste}">
-                        <h:outputText value="#{v_com.coste}" />
+                    <p:column headerText="Coste " sortBy="#{v_com.coste}">
+                        <h:outputText value="#{v_com.coste} €" />
                     </p:column>    
 
                     <p:column headerText="¿Activa?" sortBy="#{v_com.enabled}"
@@ -39,10 +39,10 @@
                     </p:column>
 
 
-                    <p:column headerText="Acciones">
+                    <p:column headerText="Acciones" style="width: 10%">
                         <p:commandButton action="componente?faces-redirect=true"
                                          icon="ui-icon-pencil" title="Editar">
-                            <f:setPropertyActionListener value="#{v_pro}" 
+                            <f:setPropertyActionListener value="#{v_com}" 
                                                          target="#{componenteBean.selectedComponente}" />
                         </p:commandButton>
 

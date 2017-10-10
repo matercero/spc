@@ -11,8 +11,8 @@
         <ui:define name="content">
             <p:messages id="user-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="usersForm" prependId="false" >
-                <fieldset>
-                    <legend><h:outputText value="#{userBean.editUserTitle} : #{userBean.selectedUser.username}"/></legend>
+            <fieldset style="margin: 1em">
+                <legend><h3><h:outputText value="#{userBean.editUserTitle} : #{userBean.selectedUser.username}"/></h3></legend>
                     <h:panelGrid columns="2" cellpadding="15"  cellspacing="10" style="width: 50%">
 
                         <h:outputText value="Nombre usuario" rendered="#{userBean.selectedUser.id == null}"/>                       

@@ -12,63 +12,62 @@
             <p:messages id="cli-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="clienteForm" prependId="false" >
                 <div class="ui-fluid">
+                    <fieldset style="margin: 1em">
+                        <legend><h:outputText value="#{clienteBean.editTitle} : #{clienteBean.selectedCliente.nombre} #{clienteBean.selectedCliente.apellidos}"/>
+                            <h:outputText value=" | Codigo:  #{clienteBean.selectedCliente.codigo}"
+                                          rendered="#{clienteBean.selectedCliente.codigo!=null}" />
+                        </legend>
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                     layout="grid" styleClass="ui-panelgrid-blank">
 
-                    <legend><h:outputText value="#{clienteBean.editTitle} : #{clienteBean.selectedCliente.nombre} #{clienteBean.selectedCliente.apellidos}"/>
-                        <h:outputText value=" | Codigo:  #{clienteBean.selectedCliente.codigo}"
-                                      rendered="#{clienteBean.selectedCliente.codigo!=null}" />
-                    </legend>
-                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
-                                 layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:outputLabel for="dni" value="Dni"/>
+                            <p:inputText id="dni" value="#{clienteBean.selectedCliente.dni}"/>
 
+                            <p:outputLabel for="nombre" value="Nombre"/>
+                            <p:inputText id="nombre"  value="#{clienteBean.selectedCliente.nombre}" required="true"/>
 
-                        <p:outputLabel for="dni" value="Dni"/>
-                        <p:inputText id="dni" value="#{clienteBean.selectedCliente.dni}"/>
+                            <p:outputLabel for="apellidos" value="Apellidos"/>
+                            <p:inputText id="apellidos"  value="#{clienteBean.selectedCliente.apellidos}" />
 
-                        <p:outputLabel for="nombre" value="Nombre"/>
-                        <p:inputText id="nombre"  value="#{clienteBean.selectedCliente.nombre}" required="true"/>
+                            <p:outputLabel for="direccion" value="Dirección"/>
+                            <p:inputText id="direccion"  value="#{clienteBean.selectedCliente.direccion}" />
 
-                        <p:outputLabel for="apellidos" value="Apellidos"/>
-                        <p:inputText id="apellidos"  value="#{clienteBean.selectedCliente.apellidos}" />
+                            <p:outputLabel for="municipio" value="Municipio"/>
+                            <p:inputText id="municipio"  value="#{clienteBean.selectedCliente.municipio}" />
 
-                        <p:outputLabel for="direccion" value="Dirección"/>
-                        <p:inputText id="direccion"  value="#{clienteBean.selectedCliente.direccion}" />
+                            <p:outputLabel for="codigoPostal" value="Código Postal"/>
+                            <p:inputText id="codigoPostal"  value="#{clienteBean.selectedCliente.codigoPostal}" />
 
-                        <p:outputLabel for="municipio" value="Municipio"/>
-                        <p:inputText id="municipio"  value="#{clienteBean.selectedCliente.municipio}" />
+                            <p:outputLabel for="provincia" value="Provincia"/>
+                            <p:inputText id="provincia"  value="#{clienteBean.selectedCliente.provincia}" />
 
-                        <p:outputLabel for="codigoPostal" value="Código Postal"/>
-                        <p:inputText id="codigoPostal"  value="#{clienteBean.selectedCliente.codigoPostal}" />
+                            <p:outputLabel for="movil" value="Móvil"/>
+                            <p:inputText id="movil"  value="#{clienteBean.selectedCliente.movil}" />
 
-                        <p:outputLabel for="provincia" value="Provincia"/>
-                        <p:inputText id="provincia"  value="#{clienteBean.selectedCliente.provincia}" />
+                            <p:outputLabel for="telefono" value="Teléfono"/>
+                            <p:inputText id="telefono"  value="#{clienteBean.selectedCliente.telefono}" />
 
-                        <p:outputLabel for="movil" value="Móvil"/>
-                        <p:inputText id="movil"  value="#{clienteBean.selectedCliente.movil}" />
+                            <p:outputLabel for="email" value="Email"/>
+                            <p:inputText id="email"  value="#{clienteBean.selectedCliente.email}" />
 
-                        <p:outputLabel for="telefono" value="Teléfono"/>
-                        <p:inputText id="telefono"  value="#{clienteBean.selectedCliente.telefono}" />
+                            <h:outputLabel for="activo" value="¿Activo?" />
+                            <p:selectBooleanCheckbox id="enabled"  value="#{clienteBean.selectedCliente.enabled}" />      
 
-                        <p:outputLabel for="email" value="Email"/>
-                        <p:inputText id="email"  value="#{clienteBean.selectedCliente.email}" />
+                            <p:outputLabel for="observacion" value="Observación"/>
+                            <p:inputTextarea id="observacion"  value="#{clienteBean.selectedCliente.observaciones}" />
 
-                        <h:outputLabel for="activo" value="¿Activo?" />
-                        <p:selectBooleanCheckbox id="enabled"  value="#{clienteBean.selectedCliente.enabled}" />      
-
-                        <p:outputLabel for="observacion" value="Observación"/>
-                        <p:inputTextarea id="observacion"  value="#{clienteBean.selectedCliente.observaciones}" />
-
-                    </p:panelGrid>
-
-
-                    <p:commandButton
-                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                        immediate="true" style="margin-bottom: 10px; width: 15%;"
-                        action="clientes?faces-redirect=true"/>
-                    <p:commandButton
-                        value="Guardar" icon="ui-icon-disk"
-                        actionListener="#{clienteBean.createOrUpdateCliente}"/>
+                        </p:panelGrid>
 
 
+                        <p:commandButton
+                            value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                            immediate="true" style="margin-bottom: 10px; width: 15%;"
+                            action="clientes?faces-redirect=true"/>
+                        <p:commandButton
+                            value="Guardar" icon="ui-icon-disk"
+                            actionListener="#{clienteBean.createOrUpdateCliente}"/>
+
+                    </fieldset>
                 </div>
             </h:form>
         </ui:define>

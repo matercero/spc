@@ -27,23 +27,27 @@
                     <p:column headerText="Nombre" sortBy="#{v_cli.nombre}">
                         <h:outputText value="#{v_cli.nombre}" />
                     </p:column>                
-                    <p:column headerText="Apellidos">
+                    <p:column headerText="Apellidos" sortBy="#{v_cli.apellidos}">
                         <h:outputText value="#{v_cli.apellidos}" />
                     </p:column>
-                    <p:column headerText="Móvil">
+                    <p:column headerText="Móvil" sortBy="#{v_cli.movil}">
                         <h:outputText value="#{v_cli.movil}" />
                     </p:column>
                     <p:column headerText="Email">
                         <h:outputText value="#{v_cli.email}" />
                     </p:column>
 
-                    <p:column headerText="Acciones">
+                    <p:column headerText="Acciones" style="width: 10%">
                         <p:commandButton action="cliente?faces-redirect=true"
                                          icon="ui-icon-pencil" title="Editar">
                             <f:setPropertyActionListener value="#{v_cli}" 
                                                          target="#{clienteBean.selectedCliente}" />
                         </p:commandButton>
 
+                        <p:commandButton title="Crear seguimiento" icon="ui-icon-cart"
+                                         actionListener="#{seguimientoBean.newSeguimiento}"
+                                         action="/mantenimiento/seguimiento?faces-redirect=true"/>
+                        
                         <p:commandButton  icon="ui-icon-trash" title="Eliminar"
                                           action="#{clienteBean.deleteCliente}"
                                           update="clienteForm">
@@ -53,16 +57,11 @@
                                        icon="ui-icon-alert" />
                         </p:commandButton>
 
+                        
                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
                             <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
                             <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
                         </p:confirmDialog>
-
-
-                        <p:commandButton title="Crear seguimiento" icon="ui-icon-cart"
-                                         actionListener="#{seguimientoBean.newSeguimiento}"
-                                         action="/mantenimiento/seguimiento?faces-redirect=true"/>
-
                     </p:column>
                 </p:dataTable>
 

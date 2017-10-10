@@ -135,7 +135,7 @@ public class ProveedorBean implements Serializable {
      * @return título de edición
      */
     public String getEditTitle() {
-        return ((selectedProveedor == null || selectedProveedor.getId() == null) ? "Nuevo proveedor" : "Editar proveedor");
+        return ((selectedProveedor == null || selectedProveedor.getId() == null) ? "Nuevo proveedor" : "Editar proveedor: ");
     }
 
     /**

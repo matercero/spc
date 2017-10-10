@@ -11,31 +11,31 @@
         <ui:define name="content">
             <p:messages id="cat-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="categoriaForm" prependId="false" >
-
-                <legend><h3><h:outputText value="#{categoriaBean.editTitle} : #{categoriaBean.selectedCategoria.nombre} " /></h3>
-                </legend>
-
                 <div class="ui-fluid">
-                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-8"
-                                 layout="grid" styleClass="ui-panelgrid-blank">
+                    <fieldset style="margin: 1em">
+                        <legend><h3><h:outputText value="#{categoriaBean.editTitle} : #{categoriaBean.selectedCategoria.nombre} " /></h3></legend>
+                        
+                            <p:panelGrid columns="2" columnClasses="ui-grid-col-2, ui-grid-col-8"
+                                         layout="grid" styleClass="ui-panelgrid-blank">
 
-                        <p:outputLabel for="nombre" value="Nombre"/>
-                        <p:inputText id="nombre"  value="#{categoriaBean.selectedCategoria.nombre}"
-                                     required="true"/>
+                                <p:outputLabel for="nombre" value="Nombre"/>
+                                <p:inputText id="nombre"  value="#{categoriaBean.selectedCategoria.nombre}"
+                                             required="true"/>
 
-                        <h:outputLabel for="activo" value="¿Activo?" />
-                        <p:selectBooleanCheckbox id="enabled"  value="#{categoriaBean.selectedCategoria.enabled}" />      
+                                <h:outputLabel for="activo" value="¿Activo?" />
+                                <p:selectBooleanCheckbox id="enabled"  value="#{categoriaBean.selectedCategoria.enabled}" />      
 
-                    </p:panelGrid>
+                            </p:panelGrid>
 
-                    <p:commandButton
-                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                        immediate="true" style="margin-bottom: 10px; width: 15%;"
-                        action="categorias?faces-redirect=true"/>
-                    <p:commandButton
-                        value="Guardar" icon="ui-icon-disk"
-                        actionListener="#{categoriaBean.createOrUpdateCategoria}"/>
+                            <p:commandButton
+                                value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                                immediate="true" style="margin-bottom: 10px; width: 15%;"
+                                action="categorias?faces-redirect=true"/>
+                            <p:commandButton
+                                value="Guardar" icon="ui-icon-disk"
+                                actionListener="#{categoriaBean.createOrUpdateCategoria}"/>
 
+                    </fieldset>
                 </div>
             </h:form>
         </ui:define>

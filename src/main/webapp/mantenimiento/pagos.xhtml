@@ -20,7 +20,22 @@
 
                     <p:column headerText="Nombre" sortBy="#{v_pag.pago}">
                         <h:outputText value="#{v_pag.pago}" />
-                    </p:column>    
+                    </p:column>
+
+                    <p:column headerText="Acciones" style="width: 10%">
+                        <p:commandButton action="pago?faces-redirect=true"
+                                         icon="ui-icon-pencil" title="Editar">
+                            <f:setPropertyActionListener value="#{v_pag}" 
+                                                         target="#{pagoBean.selectedPago}" />
+                        </p:commandButton>
+
+                        <p:commandButton action="pago?faces-redirect=true"
+                                         icon="ui-icon-trash" title="Eliminar">
+                            <f:setPropertyActionListener value="#{v_pag}" 
+                                                         target="#{pagoBean.selectedPago}" />
+                        </p:commandButton>
+
+                    </p:column>
 
                 </p:dataTable>
 

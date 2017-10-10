@@ -12,37 +12,37 @@
             <p:messages id="com-messages" showDetail="true" showSummary="false" autoUpdate="true"/>
             <h:form  id="componenteForm" prependId="false" >
                 <div class="ui-fluid">
+                  <fieldset style="margin: 1em">
+                        <legend><h:outputText value="#{componenteBean.editTitle} : #{componenteBean.selectedComponente.nombre} " /></legend>
+                        <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
+                                     layout="grid" styleClass="ui-panelgrid-blank">
 
-                    <legend><h:outputText value="#{componenteBean.editTitle} : #{componenteBean.selectedComponente.nombre} " /></legend>
-                    <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
-                                 layout="grid" styleClass="ui-panelgrid-blank">
+                            <p:outputLabel for="nombre" value="Nombre"/>
+                            <p:inputText id="nombre"  value="#{componenteBean.selectedComponente.nombre}"
+                                         required="true"/>
 
-                        <p:outputLabel for="nombre" value="Nombre"/>
-                        <p:inputText id="nombre"  value="#{componenteBean.selectedComponente.nombre}"
-                                     required="true"/>
+                            <h:outputLabel for="coste" value="Coste" />
+                            <p:inputText id="coste" placeholder="0.00" value="#{componenteBean.selectedComponente.coste}" />      
 
-                        <h:outputLabel for="coste" value="Coste" />
-                        <p:inputText id="coste" placeholder="0.00" value="#{componenteBean.selectedComponente.coste}" />      
+                            <h:outputLabel for="activo" value="¿Activo?" />
+                            <p:selectBooleanCheckbox id="enabled"  value="#{componenteBean.selectedComponente.enabled}" />      
 
-                        <h:outputLabel for="activo" value="¿Activo?" />
-                        <p:selectBooleanCheckbox id="enabled"  value="#{componenteBean.selectedComponente.enabled}" />      
+                            <h:outputLabel for="defecto" value="Por defecto" />
+                            <p:selectBooleanCheckbox id="defecto"  value="#{componenteBean.selectedComponente.defecto}" />      
 
-                        <h:outputLabel for="defecto" value="Por defecto" />
-                        <p:selectBooleanCheckbox id="defecto"  value="#{componenteBean.selectedComponente.defecto}" />      
+                        </p:panelGrid>
 
-                    </p:panelGrid>
+                        <p:commandButton
+                            value="Volver" icon="ui-icon-arrowreturnthick-1-w"
+                            immediate="true" style="margin-bottom: 10px; width: 15%;"
+                            action="componentes?faces-redirect=true"/>
+                        <p:commandButton
+                            value="Guardar" icon="ui-icon-disk"                        
+                            actionListener="#{componenteBean.createOrUpdateComponente}"/>
 
-                    <p:commandButton
-                        value="Volver" icon="ui-icon-arrowreturnthick-1-w"
-                        immediate="true" style="margin-bottom: 10px; width: 15%;"
-                        action="componentes?faces-redirect=true"/>
-                    <p:commandButton
-                        value="Guardar" icon="ui-icon-disk"                        
-                        actionListener="#{componenteBean.createOrUpdateComponente}"/>
-
-
-            </div>
-        </h:form>
-    </ui:define>
-</ui:composition>
+                    </fieldset>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
 </html>

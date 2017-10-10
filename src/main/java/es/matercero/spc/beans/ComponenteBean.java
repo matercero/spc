@@ -124,7 +124,7 @@ public class ComponenteBean implements Serializable {
      * @return título de edición
      */
     public String getEditTitle() {
-        return ((selectedComponente == null || selectedComponente.getId() == null) ? "Nuevo componente" : "Editar componente");
+        return ((selectedComponente == null || selectedComponente.getId() == null) ? "Nuevo componente" : "Editar componente: ");
     }
 
 }

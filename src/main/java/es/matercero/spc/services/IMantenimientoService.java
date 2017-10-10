@@ -28,6 +28,7 @@ public interface IMantenimientoService {
 
     /**
      * Componente
+     * @return 
      */
     List<Componente> queryAllComponentes();
     
