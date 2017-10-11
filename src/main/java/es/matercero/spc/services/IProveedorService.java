@@ -35,4 +35,11 @@ public interface IProveedorService {
      */
     void updateProveedor(Proveedor entity);
     
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    Proveedor queryProveedorCategoriaById(Integer id);
+    
 }

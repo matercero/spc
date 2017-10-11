@@ -68,7 +68,7 @@ public class Proveedor implements Serializable {
 
     @JoinTable(name = "categoria_proveedor", joinColumns = {
         @JoinColumn(name = "proveedor_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "categoria_proveedor_id", referencedColumnName = "id")})
+        @JoinColumn(name = "categoria_id", referencedColumnName = "id")})
     @ManyToMany
     private List<Categoria> categoriaList;
 

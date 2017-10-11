@@ -9,6 +9,7 @@ import es.matercero.spc.daos.IDao;
 import es.matercero.spc.hibernate.Categoria;
 import es.matercero.spc.hibernate.Componente;
 import es.matercero.spc.hibernate.Pago;
+import es.matercero.spc.hibernate.Proveedor;
 import es.matercero.spc.hibernate.Seguimiento;
 import es.matercero.spc.services.IMantenimientoService;
 import java.io.Serializable;
@@ -175,9 +176,9 @@ public class MantenimientoService implements IMantenimientoService, Serializable
         DetachedCriteria dc = DetachedCriteria.forClass(Componente.class, "componente");
         dc.add(Restrictions.eq("enabled", true));
         dc.add(Restrictions.eq("defecto", true));
-        dc.addOrder(Order.asc("nombre")); 
+        dc.addOrder(Order.asc("nombre"));
         dc.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
         return getComponenteDao().find(dc);
     }
 
-}
+    }

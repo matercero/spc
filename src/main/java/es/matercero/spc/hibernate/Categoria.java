@@ -7,18 +7,15 @@ package es.matercero.spc.hibernate;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,8 +25,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "categoria")
 public class Categoria implements Serializable {
 
-    @ManyToMany(mappedBy = "categoriaList")
-    private List<Proveedor> proveedorList;
+   
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -132,13 +128,6 @@ public class Categoria implements Serializable {
         return nombre;
     }
 
-    @XmlTransient
-    public List<Proveedor> getProveedorList() {
-        return proveedorList;
-    }
-
-    public void setProveedorList(List<Proveedor> proveedorList) {
-        this.proveedorList = proveedorList;
-    }
+  
     
 }

@@ -91,7 +91,7 @@ public class ProveedorBean implements Serializable {
     }
 
     /**
-     * prepara la creación de nuevo usuario
+     * prepara la creación de nuevo Proveedor
      *
      * @param actionEvent objeto actionEvent
      */
@@ -101,7 +101,7 @@ public class ProveedorBean implements Serializable {
     }
 
     /**
-     * actioListener que actualiza los cambios del usuario
+     * actioListener que actualiza los cambios del Proveedor
      *
      * @param actionEvent objeto actionEvent
      * @return
@@ -118,6 +118,8 @@ public class ProveedorBean implements Serializable {
                     "El Proveedor se ha creado correctamente.");
         } else {
             selectedProveedor.setLastUpdated(Calendar.getInstance().getTime());
+            //asignamos las categorias seleccionado en columna Target
+            selectedProveedor.setCategoriaList(selectedCategoria.getTarget());            
             proveedorService.updateProveedor(selectedProveedor);
             Utilidades.setMessage(FacesMessage.SEVERITY_INFO, "Proveedor actualizado",
                     "El Proveedor se ha actualizado correctamente.");
@@ -147,7 +149,8 @@ public class ProveedorBean implements Serializable {
         if (selectedProveedor.getCategoriaList() == null) {
             proveedorCategorias = new ArrayList<Categoria>(0);
         } else {
-            proveedorCategorias = new ArrayList<Categoria>(selectedProveedor.getCategoriaList());
+            Proveedor proveedor = this.getProveedorService().queryProveedorCategoriaById(selectedProveedor.getId());
+            proveedorCategorias = new ArrayList<Categoria>(proveedor.getCategoriaList());
         }
         // Vamos quitando de la lista de todas las categor
 //        for (Iterator<Categoria> it = proveedorCategorias.iterator(); it.hasNext();) {
@@ -196,5 +199,7 @@ public class ProveedorBean implements Serializable {
     public void setMantenimientoService(IMantenimientoService mantenimientoService) {
         this.mantenimientoService = mantenimientoService;
     }
+    
+    
 
 }

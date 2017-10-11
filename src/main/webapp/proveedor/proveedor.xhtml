@@ -13,7 +13,7 @@
             <h:form  id="proveedorForm" prependId="false" >
                 <div class="ui-fluid">
                     <fieldset style="margin: 1em">
-                        <legend><h3><h:outputText value="#{proveedorBean.editTitle} : #{proveedorBean.selectedProveedor.nombre} #{proveedorBean.selectedProveedor.personaContacto}"/></h3></legend>
+                        <legend><h3><h:outputText value="#{proveedorBean.editTitle} #{proveedorBean.selectedProveedor.nombre} #{proveedorBean.selectedProveedor.personaContacto}"/></h3></legend>
                         <p:panelGrid columns="2" columnClasses="ui-grid-col-2,ui-grid-col-10"
                                      layout="grid" styleClass="ui-panelgrid-blank">
 
@@ -59,7 +59,8 @@
                                                     value="#{proveedorBean.selectedCategoria}"
                                                     var="cat"
                                                     itemLabel="#{cat.nombre}"
-                                                    itemValue="#{cat}">
+                                                    itemValue="#{cat}"
+                                                    converter="categoriaConverter">
                                             <f:facet name="sourceCaption">Disponibles</f:facet>
                                             <f:facet name="targetCaption">Asignado/s</f:facet>
                                         </p:pickList>

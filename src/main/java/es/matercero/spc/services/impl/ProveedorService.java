@@ -6,13 +6,16 @@
 package es.matercero.spc.services.impl;
 
 import es.matercero.spc.daos.IDao;
+import es.matercero.spc.hibernate.Categoria;
 import es.matercero.spc.hibernate.Proveedor;
 import es.matercero.spc.services.IProveedorService;
 import java.io.Serializable;
 import java.util.List;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,4 +71,17 @@ public class ProveedorService implements IProveedorService, Serializable {
         this.proveedorDao = proveedorDao;
     }
     
+    
+    @Override
+    public Proveedor queryProveedorCategoriaById(Integer id) {
+        Proveedor prov = null;
+        DetachedCriteria dc = DetachedCriteria.forClass(Proveedor.class, "proveedor");
+        dc.add(Restrictions.eq("id", id));
+        List<Proveedor> result = this.getProveedorDao().find(dc);
+        if (!result.isEmpty()) {
+              prov = result.get(0);
+              Hibernate.initialize(prov.getCategoriaList());
+        }
+        return prov;
+    }
 }
